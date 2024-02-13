@@ -1,0 +1,10 @@
+# Dotfiles
+This is my ansible based dotfile installer :)
+
+# Ecrypt and decrypt values
+
+To encrypt use `ansible-vault encrypt_string --vault-password-file vault-password.txt "<the string to encrypt>" --name '<varname>'"`
+Then copy the output to `/group_vars/all.yaml`
+
+To decrypt the string use:
+`ansible localhost -m debug -a var="<var name>" -e "@group_vars/all.yml" --vault-id dev@vault-password.txt`
