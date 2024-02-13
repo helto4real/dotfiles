@@ -1,23 +1,12 @@
 default_roles:
   - system
-    #- 1password
-  # - alacritty
   - bash
-    #- bat
-    #- docker
   - fonts
   - fzf
   - git
-    # - go
-    # - helm
-    #- k8s
   - lazygit
-    # - neovim
-    #- pwsh
   - python
-    #- rust
   - ssh
-    #  - sshfs
   - tmux
 git_user_name: "Tomas Hellström"
 git_user_email: !vault |

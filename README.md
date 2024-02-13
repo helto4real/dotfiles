@@ -2,6 +2,11 @@
 This is my ansible based dotfile installer :)
 Install with :
 
+Copy the vault password file:
+```bash
+scp vault-password.txt username@ip:/home/user
+```
+
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/helto4real/dotfiles/main/bin/dotfiles)"
 ```
