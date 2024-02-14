@@ -13,6 +13,7 @@
       - libfuse2
       - nodejs
       - npm
+      - zoxide
     state: present
   become: true
 
