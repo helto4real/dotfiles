@@ -151,7 +151,7 @@ pushd "$DOTFILES_DIR" 2>&1 > /dev/null
 
 # Make the dotfiles executable
 _task "Make dotfiles executable"
-    _cmd "sudo chmod +x $DOTFILES_DIR/bin/dotfiles"
+    _cmd "sudo chmod +x '$DOTFILES_DIR/bin/dotfiles'"
 
 _task "Updating Galaxy"
     _cmd "ansible-galaxy install -r requirements.yml"
