@@ -37,8 +37,8 @@
         src: /tmp/nvim-appimage
         dest: /usr/local/bin/nvim
         mode: "0755"
+        force: true
       become: true
-      force: true
 
     - name: Neovim | Remove tmp file
       ansible.builtin.file:
