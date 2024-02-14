@@ -50,25 +50,25 @@
     - name: "NPM | Download NodeJS"
       ansible.builtin.get_url:
         url: "https://nodejs.org/dist/{{ nodejs_latest_version.stdout }}/{{ nodejs_package_name }}.tar.xz"
-        dest: "/tmp/{{ nodejs_package_name }}.tar.xz"
+        dest: /tmp/{{ nodejs_package_name }}.tar.xz
         mode: "0644"
 
     - name: NPM | Ensure Extraction NodeJS directory exists
       ansible.builtin.file:
-        path: "/tmp/{{ nodejs_package_name }}"
+        path: /tmp/{{ nodejs_package_name }}
         state: directory
         mode: "0755"
 
     - name: "NPM | Extract NodeJS"
       ansible.builtin.unarchive:
-        src: "/tmp/{{ nodejs_package_name }}.tar.xz"
-        dest: "/tmp/{{ nodejs_package_name }}"
+        src: /tmp/{{ nodejs_package_name }}.tar.xz
+        dest: /tmp/{{ nodejs_package_name }}
         remote_src: true
         extra_opts: "--strip-components=1"
 
     - name: "NPM | Copy NodeJS"
       ansible.builtin.copy:
-        src: "/tmp/{{ nodejs_package_name }}/bin/"
+        src: /tmp/{{ nodejs_package_name }}/bin/
         dest: /usr/local/bin/*
         remote_src: true
         mode: "0644"
@@ -81,7 +81,7 @@
 
     - name: "NPM | Copy NodeJS Modules"
       ansible.builtin.copy:
-        src: "/tmp/{{ nodejs_package_name }}/lib/node_modules/"
+        src: /tmp/{{ nodejs_package_name }}/lib/node_modules/
         dest: /usr/local/lib/node_modules/*
         remote_src: true
         mode: "0644"
