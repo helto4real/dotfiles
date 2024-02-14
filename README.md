@@ -22,5 +22,12 @@ Then copy the output to `/group_vars/all.yaml`
 To decrypt the string use:
 `ansible localhost -m debug -a var="<var name>" -e "@group_vars/all.yml" --vault-id dev@vault-password.txt`
 
-## Debuggin
+## Debugging
 To debug ansible playbooks, just set the env var to `export ANSIBLE_ENABLE_TASK_DEBUGGER=True`
+
+## After installation
+Reboot after successful installation.
+
+### Tmux
+Install the plugins with `<prefix>-I`
+
