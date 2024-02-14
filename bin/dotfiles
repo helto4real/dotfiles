@@ -143,7 +143,7 @@ _task "Updating Galaxy"
 
 _task "Running playbook"; _task_done
 if [[ -f $VAULT_SECRET ]]; then
-    ansible-playbook -vv --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+    ansible-playbook -vvv --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
 else
     ansible-playbook "$DOTFILES_DIR/main.yml" "$@"
 fi
