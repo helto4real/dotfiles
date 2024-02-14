@@ -2,10 +2,13 @@
 This is my ansible based dotfile installer :)
 Install with :
 
-Copy the vault password file:
+Create a password file named `vault.secret` in the base directore. Do not worry, it is excluded in `.gitignore`
+Copy the vault password file by:
 ```bash
+# Create the remote directory 
 ssh thhel@ip ~/.ansible-vault
-scp vault-secret username@ip:~/.ansible-vault/vault-secret
+#c Copy the file to the correct place
+scp vault-secret username@ip:~/.ansible-vault/vault.secret
 ```
 
 ```bash

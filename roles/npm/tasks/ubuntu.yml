@@ -68,8 +68,8 @@
 
     - name: "NPM | Copy NodeJS"
       ansible.builtin.copy:
-        src: /tmp/{{ nodejs_package_name }}/bin/
-        dest: /usr/local/bin/*
+        src: /tmp/{{ nodejs_package_name }}/bin/*
+        dest: /usr/local/bin/
         remote_src: true
         mode: "0644"
 
