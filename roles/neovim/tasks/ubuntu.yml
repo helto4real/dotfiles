@@ -1,8 +1,4 @@
 ---
-- name: Add specified repository into sources list
-  ansible.builtin.apt_repository:
-    repo: universe
-    state: present
 - name: "Neovim | Dependencies"
   ansible.builtin.apt:
     name:
