@@ -54,10 +54,10 @@
         state: absent
       become: true
 
-    - name: "Neovim | Install lazygit"
+    - name: "Neovim | Copy extracted executable to bin"
       ansible.builtin.copy:
         remote_src: true
-        src: /tmp/nvim.linux64/nvim
+        src: /tmp/nvim.linux64/bin/nvim
         dest: /usr/local/bin/
         owner: "{{ host_user }}"
         group: "{{ host_user }}"
