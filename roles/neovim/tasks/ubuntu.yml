@@ -21,9 +21,6 @@
 
 
 - name: "Neovim | Download Neovim appimsge"
-  when:
-    - ansible_host_environment_is_wsl
-    - not win32yank_installed.stat.exists
   block:
     - name: Neovim - Download appimage
       ansible.builtin.get_url:
