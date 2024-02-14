@@ -86,7 +86,6 @@
 #         remote_src: true
 #         mode: "0644"
 - name: "NPM - Install nodejs"
-  gather_facts: yes
   become: yes
   vars:
     NODEJS_VERSION: "20"
