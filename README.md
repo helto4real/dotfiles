@@ -4,7 +4,7 @@ Install with :
 
 Copy the vault password file:
 ```bash
-scp vault-password.txt username@ip:/home/user
+scp vault-secret username@ip:~/.dotfiles/
 ```
 
 ```bash
