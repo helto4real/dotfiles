@@ -48,7 +48,7 @@
         src: "/tmp/nvim-linux64.tar.gz"
         dest: /tmp
 
-    - name: "Neovim | Remove any current lazygit installations"
+    - name: "Neovim | Remove any current neovim installations"
       ansible.builtin.file:
         path: /usr/local/bin/nvim
         state: absent
@@ -57,7 +57,7 @@
     - name: "Neovim | Copy extracted executable to bin"
       ansible.builtin.copy:
         remote_src: true
-        src: /tmp/nvim.linux64/bin/nvim
+        src: /tmp/nvim-linux64/bin/nvim
         dest: /usr/local/bin/
         owner: "{{ host_user }}"
         group: "{{ host_user }}"
