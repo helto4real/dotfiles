@@ -124,6 +124,11 @@ if ! dpkg -s jq >/dev/null 2>&1; then
         _cmd "sudo apt-get install -y jq"
 fi
 
+if ! dpkg -s toilet >/dev/null 2>&1; then
+    _task "Installing toilet"
+        _cmd "sudo apt-get install -y toilet"
+fi
+
 # Generate SSH keys
 if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
     _task "Generating SSH keys"
