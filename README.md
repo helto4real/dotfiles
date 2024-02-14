@@ -4,7 +4,7 @@ Install with :
 
 Copy the vault password file:
 ```bash
-scp vault-secret username@ip:~/.dotfiles/
+scp vault-secret username@ip:~/.ansible-vault/vault-secret
 ```
 
 ```bash
