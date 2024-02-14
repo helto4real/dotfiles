@@ -1,4 +1,8 @@
 ---
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: universe
+    state: present
 - name: "Neovim | Dependencies"
   ansible.builtin.apt:
     name:
@@ -10,6 +14,7 @@
       - ansible-lint
       - ripgrep
       - fzf
+      - libfuse2
     state: present
   become: true
 
@@ -20,52 +25,27 @@
     state: directory
 
 
-- name: "Neovim | Download, extract Neovim appimsge"
+- name: "Neovim | Download Neovim appimsge"
   block:
-    - name: "Neovim | Ensure clean download destination"
-      ansible.builtin.file:
-        path: "nvim-linux64.tar.gz"
-        state: absent
-      become: true
-
-    - name: Neovim - Download appimage
+    - name: Download appimage
       ansible.builtin.get_url:
-        url: https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
-        dest: /tmp/nvim-linux64.tar.gz
+        url: https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
+        dest: /tmp/nvim.appimage
         mode: "0755"
-        force: true
-      notify:
-        - Cleanup neovim downloaded tar
 
-    - name: "Neovim | Ensure clean extraction destination"
-      ansible.builtin.file:
-        path: "/tmp/nvim-linux64"
-        state: absent
-      become: true
-
-    - name: "Neovim | Extract lazygit tar file"
-      ansible.builtin.unarchive:
-        src: "/tmp/nvim-linux64.tar.gz"
-        dest: /tmp
-
-    - name: "Neovim | Remove any current neovim installations"
-      ansible.builtin.file:
-        path: /usr/local/bin/nvim
-        state: absent
-      become: true
-
-    - name: "Neovim | Copy extracted executable to bin"
+    - name: System | Copy neovim into path
       ansible.builtin.copy:
         remote_src: true
-        src: /tmp/nvim-linux64/bin/nvim
-        dest: /usr/local/bin/
-        owner: "{{ host_user }}"
-        group: "{{ host_user }}"
-        force: true
+        src: /tmp/nvim.appimage
+        dest: /usr/local/bin/nvim
         mode: "0755"
       become: true
-      notify:
-        - Remove extracted neovim directory
+      force: true
+
+    - name: System | Remove tmp file
+      ansible.builtin.file:
+        path: /tmp/nvim.appimage
+        state: absent
 
 - name: "Neovim | Create symlink to role files directory"
   ansible.builtin.file:
