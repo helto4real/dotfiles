@@ -86,26 +86,24 @@
 #         remote_src: true
 #         mode: "0644"
 - name: "NPM - Install nodejs"
-  become: true
-  tasks:
-    - name: install nodejs prerequisites
-      apt:
-        name:
-          - apt-transport-https
-          - gcc
-          - g++
-          - make
-        state: present
-    - name: add nodejs apt key
+  gather_facts: yes
+  become: yes
+  vars:
+    NODEJS_VERSION: "20"
+  block:
+    - name: Install the gpg key for nodejs LTS
       apt_key:
-        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
         state: present
-    - name: add nodejs repository
+    
+    - name: Install the nodejs LTS repos
       apt_repository:
-        repo: deb https://deb.nodesource.com/node_12.x {{ ansible_lsb.codename }} main
+        repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
         state: present
         update_cache: yes
-    - name: install nodejs
+
+    - name: Install the nodejs
       apt:
         name: nodejs
         state: present
+
