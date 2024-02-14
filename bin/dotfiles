@@ -119,6 +119,10 @@ if ! pip3 list | grep watchdog >/dev/null 2>&1; then
         _cmd "pip3 install watchdog"
 fi
 
+if ! dpkg -s jq >/dev/null 2>&1; then
+    _task "Installing Python3 Pip"
+        _cmd "sudo apt-get install -y jq"
+fi
 
 # Generate SSH keys
 if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then

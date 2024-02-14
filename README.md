@@ -20,4 +20,4 @@ To decrypt the string use:
 `ansible localhost -m debug -a var="<var name>" -e "@group_vars/all.yml" --vault-id dev@vault-password.txt`
 
 ## Debuggin
-To debug ansible playbooks, just set the env var to `set ANSIBLE_ENABLE_TASK_DEBUGGER=True`
+To debug ansible playbooks, just set the env var to `export ANSIBLE_ENABLE_TASK_DEBUGGER=True`
