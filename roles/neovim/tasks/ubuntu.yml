@@ -13,12 +13,6 @@
     state: present
   become: true
 
-- name: "Neovim | Install"
-  ansible.builtin.apt:
-    name: nvim 
-    state: present
-  become: true
-
 - name: "Neovim | Config folder"
   ansible.builtin.file:
     mode: "0755"
@@ -26,22 +20,30 @@
     state: directory
 
 
-- name: System | Detecting win32yank
-  ansible.builtin.stat:
-    path: /usr/local/bin/win32yank.exe
-  register: win32yank_installed
-  when: ansible_host_environment_is_wsl
-
 - name: "Neovim | Download Neovim appimsge"
   when:
     - ansible_host_environment_is_wsl
     - not win32yank_installed.stat.exists
   block:
-    - name: Download win32yank zip
+    - name: Neovim - Download appimage
       ansible.builtin.get_url:
         url: https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
+        dest: /tmp/nvim-appimage
+        mode: "0755"
+
+    - name: Neovim | Copy neovim into path
+      ansible.builtin.copy:
+        remote_src: true
+        src: /tmp/nvim-appimage
         dest: /usr/local/bin/nvim
         mode: "0755"
+      become: true
+      force: true
+
+    - name: Neovim | Remove tmp file
+      ansible.builtin.file:
+        path: /tmp/nvim-appimage
+        state: absent
 
 - name: "Neovim | Create symlink to role files directory"
   ansible.builtin.file:
@@ -49,6 +51,7 @@
     dest: "{{ ansible_user_dir }}/.config/nvim"
     state: link
     force: true
+
 # - name: "Neovim | Copy init.lua"
 #   ansible.builtin.copy:
 #     dest: "{{ ansible_user_dir }}/.config/nvim/init.lua"
