@@ -4,6 +4,7 @@ default_roles:
   - fonts
   - fzf
   - git
+  - gh
   - lazygit
   - python
   - ssh
