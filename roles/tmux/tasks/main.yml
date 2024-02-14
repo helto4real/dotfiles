@@ -1,7 +1,10 @@
 ---
 - name: "tmux | Install tmux"
   ansible.builtin.apt:
-    name: tmux
+    name: 
+      - tmux
+      - tmate
+      - zoxide 
     state: present
   become: true
 
