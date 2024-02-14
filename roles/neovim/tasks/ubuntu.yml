@@ -11,6 +11,8 @@
       - ripgrep
       - fzf
       - libfuse2
+      - nodejs
+      - npm
     state: present
   become: true
 
