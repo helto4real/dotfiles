@@ -9,6 +9,7 @@ default_roles:
   - python
   - ssh
   - npm
+  - nvm
   - tmux
   - neovim
 git_user_name: "Tomas Hellström"
