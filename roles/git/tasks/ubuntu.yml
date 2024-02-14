@@ -49,7 +49,6 @@
     scope: global
     value: "{{ git_user_email }}"
   no_log: true
-  debugger: on_failed  
 
 - name: "Git | Set user.name"
   community.general.git_config:

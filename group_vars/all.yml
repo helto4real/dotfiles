@@ -8,6 +8,7 @@ default_roles:
   - python
   - ssh
   - tmux
+  - neovim
 git_user_name: "Tomas Hellström"
 git_user_email: !vault |
           $ANSIBLE_VAULT;1.1;AES256
