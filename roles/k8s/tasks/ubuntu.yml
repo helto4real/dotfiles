@@ -4,7 +4,6 @@
     return_content: yes
   register: version
 
----
 - name: K8s | Adding kubernetes apt key
   ansible.builtin.apt_key:
     url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
