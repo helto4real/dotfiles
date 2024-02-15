@@ -5,6 +5,9 @@ default_roles:
   - fzf
   - git
   - gh
+  - k8s
+  - helm
+  - k9s
   - lazygit
   - python
   - ssh
