@@ -49,7 +49,11 @@
   block:
     - name: Install the unzip packate
       apt:
-        name: unzip
+        name: 
+          - unzip
+          - gnupg2
+          - gnupg-agent
+          - socat
         state: present
 
 

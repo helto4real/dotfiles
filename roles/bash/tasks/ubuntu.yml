@@ -30,9 +30,17 @@
         cmd: "{{ ansible_user_dir }}/oh-my-bash.install.sh"
           #become: true
 
-- name: "Bash | Copy .bashrc"
+- name: "Bash | Copy .bashrc in non WSL environments"
+  when: not ansible_host_environment_is_wsl
   ansible.builtin.copy:
     src: ".bashrc"
+    dest: "{{ ansible_user_dir }}/.bashrc"
+    mode: "0644"
+
+- name: "Bash | Copy .bashrc in WSL environments"
+  when: ansible_host_environment_is_wsl
+  ansible.builtin.copy:
+    src: ".bashrc_wsl"
     dest: "{{ ansible_user_dir }}/.bashrc"
     mode: "0644"
 
