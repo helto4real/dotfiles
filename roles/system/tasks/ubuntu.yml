@@ -56,9 +56,6 @@
           - socat
         state: present
 
-
-    
-    
 - name: System | Detecting win32yank
   ansible.builtin.stat:
     path: /usr/local/bin/win32yank.exe
