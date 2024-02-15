@@ -6,9 +6,9 @@ Create a password file named `vault.secret` in the base directore. Do not worry,
 Copy the vault password file by:
 ```bash
 # Create the remote directory 
-ssh username@ip ~/.ansible-vault
+ssh username@ip mkdir ~/.ansible-vault
 #c Copy the file to the correct place
-scp vault-secret username@ip:~/.ansible-vault/vault.secret
+scp vault.secret username@ip:~/.ansible-vault/vault.secret
 ```
 
 ```bash
