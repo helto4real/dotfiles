@@ -56,6 +56,12 @@
     scope: global
     value: "{{ git_user_name }}"
 
+# Alias for add, commit and push in one command
+- name: "Git | Set alias.cmp"
+  community.general.git_config:
+    name: alias.cmp
+    scope: global
+    value: "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
 # - name: "Git | Set user.signingkey"
 #   community.general.git_config:
 #     name: user.signingkey
