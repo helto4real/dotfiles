@@ -44,11 +44,8 @@
 #         dest: "~/.kube/config"
 #         mode: "0600"
 - name: Install KubeCtl
-  hosts: all
   become: yes
-
-
-  tasks:
+  block:
   - name: Check if home directory exists
     stat:
       path: /home/{{ host_user }}
