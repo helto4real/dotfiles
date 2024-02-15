@@ -8,6 +8,7 @@ default_roles:
   - lazygit
   - python
   - ssh
+  - sshf
   - npm
   - nvm
   - tmux

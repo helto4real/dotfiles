@@ -31,3 +31,7 @@ Reboot after successful installation.
 ### Tmux
 Install the plugins with `<prefix>-I`
 
+## Attribution
+Big thanks to `@TechDufus` for sharing his work.
+https://github.com/TechDufus/dotfiles
+

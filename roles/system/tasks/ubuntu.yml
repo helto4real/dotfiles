@@ -54,7 +54,6 @@
           - gnupg2
           - gnupg-agent
           - socat
-          - sshfs
         state: present
 
 - name: System | Detecting win32yank
