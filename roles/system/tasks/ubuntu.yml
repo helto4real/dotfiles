@@ -7,7 +7,6 @@
     autoremove: true
     autoclean: true
   become: true
-
 # - name: "System | Install"
 #   ansible.builtin.apt:
 #     name:
@@ -43,7 +42,19 @@
 #     mode: "0644"
 #   become: true
 #   when: not ansible_host_environment_is_wsl
+#
+- name: System | Installing WLS specific apt packages 
+  when: ansible_host_environment_is_wsl
+  become: yes
+  block:
+    - name: Install the unzip packate
+      apt:
+        name: unzip
+        state: present
 
+
+    
+    
 - name: System | Detecting win32yank
   ansible.builtin.stat:
     path: /usr/local/bin/win32yank.exe
