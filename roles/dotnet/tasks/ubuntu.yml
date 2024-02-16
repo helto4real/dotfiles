@@ -19,7 +19,6 @@
         name: apt-transport-https
         state: present
       debugger: on_failed
-
     - name: Install dotnet dependencies 
       ansible.builtin.apt:
         name: "{{ dotnet_dependencies }}"
@@ -45,3 +44,4 @@
       ansible.builtin.file:
         path: "{{ dotnet_script_path  }}/dotnet-install.sh"
         state: absent
+
