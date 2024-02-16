@@ -1,19 +1,4 @@
 - name: "DotNet | Install DotNet using install script"
-  become: true 
-  block: 
-    
-    - name: "DotNet | Install dotnet dependencies"
-      ansible.builtin.apt:
-        name: apt-transport-https
-        state: present
-
-    - name: Install dotnet dependencies 
-      become: true
-      ansible.builtin.apt:
-        name: "{{ dotnet_dependencies }}"
-        state: present 
-      debugger: on_failed
-
   vars:
     dotnet_runtime: dotnet
     dotnet_channel: 8.0
@@ -27,6 +12,20 @@
       - libssl1.1
       - libstdc++6
       - zlib1g   
+  become: true 
+  block: 
+      
+    - name: "DotNet | Install dotnet dependencies"
+      ansible.builtin.apt:
+        name: apt-transport-https
+        state: present
+    - name: DGB
+      debug:
+        msg: "{{ dotnet_dependencies }}"
+    - name: "DotNet | Install DotNet dependencies"
+      ansible.builtin.apt:
+        name: "{{ dotnet_dependencies }}"
+        state: present
     # - name: Download MS dotnet-install script
     #   get_url:
     #     url: https://dot.net/v1/dotnet-install.sh
