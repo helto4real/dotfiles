@@ -14,13 +14,34 @@
       - libstdc++6
       - zlib1g    
   block: 
-    - name: test
-      debug:
-        msg: hello world
-
     - name: "DotNet | Install dotnet dependencies"
       ansible.builtin.apt:
         name: apt-transport-https
         state: present
       debugger: on_failed
 
+    - name: Install dotnet dependencies 
+      ansible.builtin.apt:
+        name: "{{ dotnet_dependencies }}"
+        state: latest
+        update_cache: true 
+      debugger: on_failed
+
+    - name: Download MS dotnet-install script
+      get_url:
+        url: https://dot.net/v1/dotnet-install.sh
+        dest: "{{ dotnet_script_path }}/dotnet-install.sh"
+
+    - name: Make dotnet-install script executable
+      ansible.builtin.command: chmod +x "{{ dotnet_script_path }}/dotnet-install.sh"
+      become_user: yes
+
+    - name: Install dotnet
+      ansible.builtin.shell:
+        cmd: "{{ dotnet_script_path }}/dotnet-install.sh --channel {{ dotnet_channel }} --runtime {{ dotnet_runtime }}"
+        chdir: "{{ dotnet_installation_path  }}"
+
+    - name: Cleanup dotnet-install files
+      ansible.builtin.file:
+        path: "{{ dotnet_script_path  }}/dotnet-install.sh"
+        state: absent
