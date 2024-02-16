@@ -102,6 +102,7 @@ if ! dpkg -s ansible >/dev/null 2>&1; then
         _cmd "sudo apt-get install -y ansible"
         _cmd "sudo apt-get install python3-argcomplete"
         _cmd "sudo activate-global-python-argcomplete3"
+        _cmd "sudo apt-get install libssl-dev"
 fi
 
 # Check if python3 and pip is installed

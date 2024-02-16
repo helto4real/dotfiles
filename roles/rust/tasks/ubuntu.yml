@@ -8,3 +8,6 @@
   loop:
     - rustc
     - cargo
+
+- name: Rust | Install cargo-watch
+  ansible.builtin.shell: cargo install cargo-watch
