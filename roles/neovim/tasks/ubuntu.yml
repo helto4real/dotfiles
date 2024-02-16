@@ -1,70 +1,7 @@
----
-- name: "Neovim | Dependencies"
-  ansible.builtin.apt:
-    name:
-      - cmake
-      - curl
-      - pkg-config
-      - libtool
-      - unzip
-      - ansible-lint
-      - ripgrep
-      - fzf
-      - libfuse2
-      - nodejs
-
-    state: present
+- name: "DotNet Install"
   become: true
-
-- name: "Neovim | Config folder"
-  ansible.builtin.file:
-    mode: "0755"
-    path: "{{ ansible_user_dir }}/.config/nvim"
-    state: directory
-
-
-- name: "Neovim | Download Neovim appimsge"
-  block:
-    - name: Download appimage
-      ansible.builtin.get_url:
-        url: https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
-        dest: /tmp/nvim.appimage
-        mode: "0755"
-
-    - name: System | Copy neovim into path
-      ansible.builtin.copy:
-        remote_src: true
-        src: /tmp/nvim.appimage
-        dest: /usr/local/bin/nvim
-        mode: "0755"
-        force: true
-      become: true
-
-    - name: System | Remove tmp file
-      ansible.builtin.file:
-        path: /tmp/nvim.appimage
-        state: absent
-
-- name: "Neovim | Create symlink to role files directory"
-  ansible.builtin.file:
-    src: "{{ role_path }}/files"
-    dest: "{{ ansible_user_dir }}/.config/nvim"
-    state: link
-    force: true
-
-# - name: "Neovim | Copy init.lua"
-#   ansible.builtin.copy:
-#     dest: "{{ ansible_user_dir }}/.config/nvim/init.lua"
-#     src: "init.lua"
-#     mode: "0644"
-#
-# - name: "Neovim | Copy .luarc.json"
-#   ansible.builtin.copy:
-#     dest: "{{ ansible_user_dir }}/.config/nvim/.luarc.json"
-#     src: ".luarc.json"
-#     mode: "0644"
-# - name: "Neovim | Copy modules"
-#   ansible.builtin.copy:
-#     dest: "{{ ansible_user_dir }}/.config/nvim/lua"
-#     src: "lua/"
-#     mode: "0644"
+  community.general.snap:
+    name: dotnet-sdk
+    channel: 8.0
+    classic: true
+    state: present
