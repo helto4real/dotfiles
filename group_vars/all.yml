@@ -1,5 +1,6 @@
 default_roles:
   - system
+  - 1password
   - bash
   - dotnet
   - fonts
@@ -11,6 +12,7 @@ default_roles:
   - k9s
   - lazygit
   - python
+  - rust  
   - ssh
   - sshfs
   - npm
