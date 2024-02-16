@@ -1,6 +1,7 @@
 default_roles:
   - system
   - bash
+  - dotnet
   - fonts
   - fzf
   - git
