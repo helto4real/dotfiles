@@ -1,0 +1,226 @@
+          #update_cache: yes
+          #become: true
+
+  #   # - name: Make sure HTTPS is supported by apt
+  #   #   ansible.builtin.apt:
+  #   #     name: apt-transport-https
+  #   #     state: latest
+  #   #     update_cache: yes
+  #   #
+  #   - name: Install dotnet dependencies #https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-2004#dependencies
+  #     ansible.builtin.apt:
+  #       name: "{{ dotnet_dependencies }}"
+  #       state: latest
+  #       update_cache: yes
+  #
+  #   - name: Download MS dotnet-install script
+  #     get_url:
+  #       url: https://dot.net/v1/dotnet-install.sh
+  #       dest: "{{ dotnet_script_path }}/dotnet-install.sh"
+  #
+  #   - name: Make dotnet-install script executable
+  #     ansible.builtin.command: chmod +x "{{ dotnet_script_path }}/dotnet-install.sh"
+  #     become_user: yes
+  #
+  #   - name: Install dotnet
+  #     ansible.builtin.shell:
+  #       cmd: "{{ dotnet_script_path }}/dotnet-install.sh --channel {{ dotnet_channel }} --runtime {{ dotnet_runtime }}"
+  #       chdir: "{{ dotnet_installation_path  }}"
+  #
+  #   - name: Cleanup dotnet-install files
+  #     ansible.builtin.file:
+  #       path: "{{ dotnet_script_path  }}/dotnet-install.sh"
+  #       state: absent
+# - name: "DotNet | Getting version information"
+#   ansible.builtin.shell: 
+#     cmd: |
+#       echo $(if command -v lsb_release &> /dev/null; then lsb_release -r -s; else grep -oP '(?<=^VERSION_ID=).+' /etc/os-release | tr -d '"'; fi)
+#   register: current_ubuntu_version
+#   args:
+#     executable: /bin/bash
+#       #become: yes  
+#
+# - name: DEBUG
+#   ansible.builtin.debug:
+#     msg: "Installing dotnet on Ubuntu version: {{ current_ubuntu_version.stdout }}"
+#
+# - name: Download MS product repository
+#   get_url:
+#     url: "https://packages.microsoft.com/config/ubuntu/{{ current_ubuntu_version.stdout }}/packages-microsoft-prod.deb"
+#     dest: /tmp/packages-microsoft-prod.deb
+#
+# - name: Install MS product repository
+#   apt: deb=/tmp/packages-microsoft-prod.deb
+#   become: true
+#
+# - name: Make sure HTTPS is supported by apt
+#   apt:
+#     name: apt-transport-https
+#     state: present
+#     update_cache: no
+#   become: true
+# - name: Install .NET Core SDK
+#   apt:
+#     name: dotnet-sdk-8.0
+#     state: present
+#     update_cache: yes
+#   become: true
+
+# - name: K8s | Adding kubernetes apt key
+#   ansible.builtin.apt_key:
+#     url: "https://packages.microsoft.com/config/ubuntu/{{ repo_version }}/packages-microsoft-prod.deb"
+#   become: true
+#
+# - name "DotNet | Get DotNet Packages"
+#   ansible.builtin.shell:
+#     cmd: |
+#       wget https://packages.microsoft.com/config/ubuntu/$repo_version/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+#       dpkg -i packages-microsoft-prod.deb
+#       rm packages-microsoft-prod.deb
+#       apt-get update
+#   become: yes
+#
+# - name "DotNet | Install DotNet Packages"
+#   ansible.builtin.shell:
+#     cmd: |
+#       wget https://packages.microsoft.com/config/ubuntu/$repo_version/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+#       dpkg -i packages-microsoft-prod.deb
+#       rm packages-microsoft-prod.deb
+#   become: yes
+# - name: DotNet | Adding kubernetes apt repo
+#   ansible.builtin.apt_repository:
+#     repo: "https://packages.microsoft.com/config/ubuntu/{{ current_ubuntu_version.stdout }}/packages-microsoft-prod.deb packages-microsoft-prod.de"
+#
+#   become: true
+#
+# - name: DotNet | Installing DotNet
+#   ansible.builtin.apt:
+#     name: "dotnet-sdk-8.0"
+#     state: present
+#     force: true
+#   become: yes 
+
+
+# - name: K8s | Configure .kube/config
+#   block:
+#     - name: K8s | Ensure .kube directory exists
+#       ansible.builtin.file:
+#         path: "~/.kube"
+#         state: directory
+#         mode: "0755"
+#
+#     - name: K8s | Copy .kube/config file
+#       ansible.builtin.copy:
+#         src: config
+#         dest: "~/.kube/config"
+#         mode: "0600"
+# - name: Install KubeCtl
+#   become: yes
+#   block:
+#   - name: Check if home directory exists
+#     stat:
+#       path: /home/{{ host_user }}
+#     register: home_dir
+#
+#   - name: Create home directory if it doesn't exist
+#     file:
+#       path: /home/{{ host_user }}
+#       state: directory
+#     when: not home_dir.stat.exists
+#
+#   - name: Check for kubectl binary in home directory
+#     stat:
+#       path: /home/{{ host_user }}/kubectl
+#     register:
+#       kubectl_binary_home
+#
+#   - name: Check for kubectl checksum in home directory
+#     stat:
+#       path: /home/{{ host_user }}/kubectl
+#     register:
+#       kubectl_chksum_home
+#
+#   - name: Delete kubectl binary from home directory
+#     file:
+#       path: /home/{{ host_user }}/kubectl
+#       state: absent
+#     when: kubectl_binary_home.stat.exists
+#
+#   - name: Delete checksum file from home directory
+#     file:
+#       path: /home/{{ host_user }}/kubectl.sha256
+#       state: absent
+#     when: kubectl_chksum_home.stat.exists
+#
+#   - name: Get latest kubectl version
+#     uri:
+#       url: https://dl.k8s.io/release/stable.txt
+#       return_content: yes
+#       status_code: 200, 304
+#     register: version
+#
+#   - name: Download the latest kubectl release
+#     uri:
+#       url: https://dl.k8s.io/release/{{ version.content }}/bin/linux/amd64/kubectl
+#       dest: /home/{{ host_user }}
+#       status_code: 200, 304
+#     register: kubectl
+#
+#   - name: Download the kubectl checksum file
+#     uri:
+#       url: https://dl.k8s.io/{{ version.content }}/bin/linux/amd64/kubectl.sha256
+#       dest: /home/{{ host_user }}
+#       status_code: 200, 304
+#
+#   - name: Validate the kubectl binary against the checksum file
+#     shell: echo "$(cat /home/{{  host_user }}/kubectl.sha256)"
+#     register: source_chksum
+#
+#   - name: Compute new checksum of kubectl binary
+#     shell: sha256sum /home/{{ host_user }}/kubectl | awk '{print $1}'
+#     register: new_chksum
+#
+#   - name: Assert that the kubectl binary is OK
+#     vars:
+#       expected: "kubectl: OK"
+#     assert:
+#       that:
+#         - source_chksum.stdout == new_chksum.stdout
+#       fail_msg: "Checksum does not match {{ source_chksum.stdout }} != {{ new_chksum.stdout }}"
+#       success_msg: "Successfully validated"
+#
+#   - name: Check if kubectl installed in /usr/local/bin
+#     stat:
+#       path: /usr/local/bin/kubectl
+#     register: kubectl_binary_usr_local_bin
+#
+#   - name: Delete kubectl binary from /usr/local/bin if it exists
+#     file:
+#       path: /usr/local/bin/kubectl
+#       state: absent
+#     when: kubectl_binary_home.stat.exists
+#
+#   - name: Copy kubectl and change permissions
+#     copy:
+#       src: "{{ kubectl.path }}"
+#       remote_src: yes
+#       dest: /usr/local/bin/kubectl
+#       owner: root
+#       group: root
+#       mode: "+x"
+#
+#   - name: Check if kubectl is installed
+#     shell: kubectl version --client
+#     register: client
+#     failed_when: client.rc > 1
+#
+#   - name: remove downloaded binaries from home
+#     file:
+#       path: /home/{{ host_user }}/kubectl
+#       state: absent
+#
+#   - name: remove downloaded checksums from home
+#     file:
+#       path: /home/{{ host_user }}/kubectl.sha256
+#       state: absent
+

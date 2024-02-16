@@ -1,0 +1,26 @@
+- name: "DotNet | Install DotNet using install script"
+  become: true 
+  vars:
+    dotnet_runtime: dotnet
+    dotnet_channel: 8.0
+    dotnet_script_path: /tmp
+    dotnet_installation_path: /home/{{ host_user }}
+    dotnet_dependencies:
+      - libc6
+      - libgcc1
+      - libgssapi-krb5-2
+      - libicu66
+      - libssl1.1
+      - libstdc++6
+      - zlib1g    
+  block: 
+    - name: test
+      debug:
+        msg: hello world
+
+    - name: "DotNet | Install dotnet dependencies"
+      ansible.builtin.apt:
+        name: apt-transport-https
+        state: present
+      debugger: on_failed
+
