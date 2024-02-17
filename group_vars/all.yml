@@ -2,7 +2,6 @@ default_roles:
   - system
   - 1password
   - bash
-  - dotnet
   - fonts
   - fzf
   - git
@@ -19,6 +18,7 @@ default_roles:
   - nvm
   - tmux
   - neovim
+  - dotnet
 
 git_user_name: "Tomas Hellström"
 git_user_email: !vault |

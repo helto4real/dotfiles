@@ -5,9 +5,9 @@ addToPath /usr/local/go/bin
 #addToPath $HOME/go/bin
 addToPath $HOME/.dotfiles/bin
 #addToPath $HOME/.cargo/bin
-export DOTNET_ROOT=$HOME/.dotnet
-addToPath $HOME/.dotnet
-addToPath $HOME/.dotnet/tools
+# export DOTNET_ROOT=$HOME/.dotnet
+# addToPath $HOME/.dotnet
+# addToPath $HOME/.dotnet/tools
 
 addToPathFront $HOME/.local/bin
 
