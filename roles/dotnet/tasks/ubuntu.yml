@@ -9,5 +9,5 @@
     state: present
 
 - name: "DotNet | Install dotnet-outdated-tool"
-  ansible.general.shell: 
-  cmd: "dotnet tool install --global dotnet-outdated-tool"
+  ansible.builtin.shell: 
+  cmd: dotnet tool install --global dotnet-outdated-tool
