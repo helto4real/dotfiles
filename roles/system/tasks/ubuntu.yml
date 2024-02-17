@@ -45,7 +45,7 @@
 #
 - name: System | Installing WLS specific apt packages 
   when: ansible_host_environment_is_wsl
-  become: yes
+  become: true 
   block:
     - name: Install the unzip packate
       apt:
