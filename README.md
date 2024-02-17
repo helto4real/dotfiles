@@ -31,6 +31,12 @@ Reboot after successful installation.
 ### Tmux
 Install the plugins with `<prefix>-I`
 
+### Noteworhy cool stuff
+
+- `rvim -s <server> -d <directory>` to remote nvim to a server
+- `bt` to use top command on sterioids
+- `k9s` to view kubernetes cluster in command window
+
 ## Attribution
 Big thanks to `@TechDufus` for sharing his work.
 https://github.com/TechDufus/dotfiles
