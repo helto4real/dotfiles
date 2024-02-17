@@ -8,5 +8,9 @@ addToPath $HOME/.dotfiles/bin
 addToPathFront $HOME/.local/bin
 # Add paths to dotnet tools
 addToPath $HOME/.dotnet/tools
+
+export DOTNET_ROOT=$HOME/.dotnet
+addToPath $DOTNET_ROOT
+addToPath $DOTNET_ROOT/tools
 # ccache
 #addToPathFront /usr/lib/ccache
