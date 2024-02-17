@@ -14,6 +14,8 @@ scp vault.secret username@ip:~/.ansible-vault/vault.secret
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/helto4real/dotfiles/main/bin/dotfiles)"
 ```
+Make sure you are sudo before running any command locally or using the `dotfiles` upgrade script
+
 # Ecrypt and decrypt values
 
 To encrypt use `ansible-vault encrypt_string --vault-password-file vault-password.txt "<the string to encrypt>" --name '<varname>'"`
@@ -25,6 +27,10 @@ To decrypt the string use:
 ## Debugging
 To debug ansible playbooks, just set the env var to `export ANSIBLE_ENABLE_TASK_DEBUGGER=True`
 
+To run a specific role locally during development edit the `main_test.yml` and run
+```shell
+ansible-playbook main_test.yml --vault-password-file vault.secret
+```
 ## After installation
 Reboot after successful installation.
 
@@ -36,6 +42,7 @@ Install the plugins with `<prefix>-I`
 - `rvim -s <server> -d <directory>` to remote nvim to a server
 - `bt` to use top command on sterioids
 - `k9s` to view kubernetes cluster in command window
+- `z` to do smart cd using keyword, single z alwas go to home directory
 
 ## Attribution
 Big thanks to `@TechDufus` for sharing his work.

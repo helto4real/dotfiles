@@ -1,17 +1,3 @@
----
-# - name: "DotNet | Install DotNet using install script"
-#   become: true
-#   community.general.snap:
-#     name:
-#       - dotnet-sdk 
-#     channel: 8.0
-#     classic: true 
-#     state: present
-#
-# - name: "DotNet | Install dotnet-outdated-tool"
-#   ansible.builtin.shell: 
-#     cmd: dotnet tool install --global dotnet-outdated-tool
-
 - name: "DotNet | Install Dotnet using install script"
   vars:
     dotnet_runtime: dotnet
@@ -36,13 +22,6 @@
         update_cache: yes
       become: true
 
-    # - name: Install dotnet dependencies #https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-2004#dependencies
-    #   apt:
-    #     name: "{{ dotnet_dependencies }}"
-    #     state: latest
-    #     update_cache: yes
-    #   become: yes
-
     - name: Download MS dotnet-install script
       get_url:
         url: https://dot.net/v1/dotnet-install.sh
@@ -63,3 +42,12 @@
       ansible.builtin.file:
         path: "{{ dotnet_script_path  }}/dotnet-install.sh"
         state: absent
+    
+    - name: Install outdated dotnet tool
+      ansible.builtin.shell:
+        cmd: |
+          # These exports are not available yet so lets make them
+          export DOTNET_ROOT=$HOME/.dotnet
+          export PATH=$PATH:$HOME/.dotnet
+          export PATH=$PATH:$HOME/.dotnet/tools
+          dotnet tool install --global dotnet-outdated-tool
