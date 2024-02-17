@@ -7,3 +7,6 @@
     channel: 8.0
     classic: true 
     state: present
+
+- name: "DotNet | Install dotnet-outdated-tool"
+  ansible.general.shell: dotnet tool install --global dotnet-outdated-tool 
