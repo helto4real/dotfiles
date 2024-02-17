@@ -14,6 +14,20 @@
     #   - zlib1g
 
   block:
+    - name: Get the correct libicu version to install
+      ansible.builtin.shell: apt-cache search libicu | grep -o "libicu7[0-9]\|libicu6[0-9]"
+      register: libicu_lib
+    
+    - name: Echo the version to install
+      ansible.builtin.debug:
+        msg: "Make sure the lib {{ libicu_lib.stdout }} is installed"
+
+    - name: Installing dependencies for .net
+      ansible.builtin.apt:
+        name:
+          - "{{ libicu_lib.stdout }}"
+        state: present
+      become: true
 
     - name : Make sure HTTPS is supported by apt
       apt:
