@@ -58,6 +58,14 @@
     directory_mode: 0755
     force: true
 
+- name: "Bash | Copy custom wsl bash config"
+  ansible.builtin.copy:
+    dest: "{{ ansible_user_dir }}/.config/"
+    src: "bash_wsl"
+    mode: "0644"
+    directory_mode: 0755
+    force: true
+
 - name: "Bash | Copy custom bash theme"
   ansible.builtin.copy:
     dest: "{{ ansible_user_dir }}/.oh-my-bash/custom/"

@@ -193,6 +193,10 @@ for file in $HOME/.config/bash/*.sh; do
   source "$file"
 done
 
+for file in $HOME/.config/bash_wsl/*.sh; do
+  source "$file"
+done
+
 [ -f ~/.bash_lumen ] && source ~/.bash_lumen
 [ -f ~/.fzf.bash ]   && source ~/.fzf.bash
 
