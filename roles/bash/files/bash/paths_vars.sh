@@ -5,12 +5,11 @@ addToPath /usr/local/go/bin
 #addToPath $HOME/go/bin
 addToPath $HOME/.dotfiles/bin
 #addToPath $HOME/.cargo/bin
-addToPathFront $HOME/.local/bin
-# Add paths to dotnet tools
+export DOTNET_ROOT=$HOME/.dotnet
+addToPath $HOME/.dotnet
 addToPath $HOME/.dotnet/tools
 
-export DOTNET_ROOT=$HOME/.dotnet
-addToPath $DOTNET_ROOT
-addToPath $DOTNET_ROOT/tools
+addToPathFront $HOME/.local/bin
+
 # ccache
 #addToPathFront /usr/lib/ccache
