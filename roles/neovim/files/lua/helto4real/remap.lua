@@ -21,6 +21,7 @@ keymap.set("n", "<C-a>", "ggVG")
 -- window splitting
 map("n", "<leader>wv", "<C-w>v", "Split [W]indow [V]ertically")
 map("n", "<leader>wh", "<C-w>s", "Split [W]indow horizontally")
+map("n", "<leader>ws", "<C-w>s", "Split [W]indow horizontally")
 map("n", "<leader>we", "<C-w>=", "[W]indow [=]equal width")
 map("n", "<leader>wx", ":close<CR>", "[W]indow close")
 
