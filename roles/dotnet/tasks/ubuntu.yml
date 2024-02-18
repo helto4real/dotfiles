@@ -1,6 +1,6 @@
 - name: "DotNet | Install Dotnet using Microsoft feeds"
   block:
-    - name: Get Ubuntu version
+    - name: Dotnet | Get Ubuntu version
       ansible.builtin.shell: 
         cmd: | 
           # Get Ubuntu version
@@ -19,7 +19,7 @@
           sudo apt update
         executable: /bin/bash
       register: ubuntu_version
-    - name: Install from feed
+    - name: Dotnet | Install from feed
       ansible.builtin.apt:
         name:
           - dotnet-sdk-8.0
