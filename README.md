@@ -7,7 +7,7 @@ Copy the vault password file by:
 ```bash
 # Create the remote directory 
 ssh username@ip mkdir ~/.ansible-vault
-#c Copy the file to the correct place
+# Copy the file to the correct place
 scp vault.secret username@ip:~/.ansible-vault/vault.secret
 ```
 
@@ -37,7 +37,7 @@ Reboot after successful installation.
 ### Tmux
 Install the plugins with `<prefix>-I`
 
-### Noteworhy cool stuff
+### Noteworthy cool stuff
 
 - `rvim -s <server> -d <directory>` to remote nvim to a server
 - `bt` to use top command on sterioids
