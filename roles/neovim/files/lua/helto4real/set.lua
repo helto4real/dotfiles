@@ -6,7 +6,8 @@ vim.g.nofsync = true
 vim.cmd([[au BufNewFile,BufRead *.v set filetype=v]])
 -- let's get smart indenting
 opt.smartindent = true
-
+-- No annoying backups
+opt.backup = false
 -- no wrapping helps for code
 opt.wrap = false
 
