@@ -28,7 +28,14 @@ require('lazy').setup(
         },
         {
             "iamcco/markdown-preview.nvim",
-            run = function() vim.fn["mkdp#util#install"]() end,
+            cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+            build = "cd app && yarn install",
+            init = function()
+                vim.g.mkdp_filetypes = { "markdown" }
+                vim.g.mkdp_browser = "/usr/bin/wslview"
+                vim.g.mkdp_browserfunc="OpenMarkdownPreview"
+            end,
+            ft = { "markdown" },
         },
         { 'akinsho/toggleterm.nvim' },
         --  The configuration is done below. Search for lspconfig to find it below.

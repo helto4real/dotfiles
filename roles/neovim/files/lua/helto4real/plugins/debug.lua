@@ -59,6 +59,7 @@ return {
             ensure_installed = {
                 -- Update this to ensure that you have the debuggers for the langs you want
                -- 'delve',
+                'coreclr'
             },
         }
 
@@ -88,8 +89,8 @@ return {
                     step_out = '⏮',
                     step_back = 'b',
                     run_last = '▶▶',
-                    terminate = '⏹',
-                    disconnect = '⏏',
+                    terminate = 'T',
+                    disconnect = 'D',
                 },
             },
         }
