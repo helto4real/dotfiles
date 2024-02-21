@@ -38,11 +38,13 @@ local on_attach = function(_, bufnr)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
 
--- quick fix naviagtion
---vim.keymap.set("n", "<C-", "<cmd>cnext<CR>zz")
---vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
---vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
---vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+    nmap("<leader>b", "<cmd>CompilerOpen<cr>", "[B]uild binary")
+    -- nmap("<leader>b", "<cmd>CompilerRedo<cr>", "[B]uild binary")
+    -- quick fix naviagtion
+    --vim.keymap.set("n", "<C-", "<cmd>cnext<CR>zz")
+    --vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
+    --vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+    --vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 end
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
