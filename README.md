@@ -37,6 +37,20 @@ Reboot after successful installation.
 ### Tmux
 Install the plugins with `<prefix>-I`
 
+### Nvim
+If you want to edit config directly locally on this gitrepo, make a symbolic link and you do not need ot push the changes.
+```bash
+unlink ~/.config/nvim
+ln -s ~/git/dotfiles/roles/neovim/files ~/.config/nvim
+```
+
+### Copilot
+To use copilot plugin you need to setup.
+
+```
+:Copilot setup
+```
+
 ### Noteworthy cool stuff
 
 - `rvim -s <server> -d <directory>` to remote nvim to a server
