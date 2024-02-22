@@ -217,6 +217,7 @@ require('lazy').setup(
         {
             "lewis6991/gitsigns.nvim"
         },
+        { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         require 'helto4real.plugins.debug',
 
         -- Detect tabstop and shiftwidth automatically
