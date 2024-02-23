@@ -18,7 +18,7 @@ Make sure you are sudo before running any command locally or using the `dotfiles
 
 # Ecrypt and decrypt values
 
-To encrypt use `ansible-vault encrypt_string --vault-password-file vault-password.txt "<the string to encrypt>" --name '<varname>'"`
+To encrypt use `ansible-vault encrypt_string --vault-password-file vault.secret "<the string to encrypt>" --name '<varname>'"`
 Then copy the output to `/group_vars/all.yaml`
 
 To decrypt the string use:
