@@ -55,6 +55,7 @@
           - gnupg-agent
           - socat
           - wslu
+          - xdg-utils
         state: present
 
 - name: System | Detecting win32yank
