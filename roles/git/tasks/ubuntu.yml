@@ -76,23 +76,23 @@
 #     scope: global
 #     value: ssh
 
-- name: "Git | Set commit.gpgsign"
-  community.general.git_config:
-    name: commit.gpgsign
-    scope: global
-    value: true
-
-- name: "Git | Set tag.gpgsign"
-  community.general.git_config:
-    name: tag.gpgsign
-    scope: global
-    value: true
-
-- name: "Git | Set user.signingkey"
-  community.general.git_config:
-    name: user.signingkey
-    scope: global
-    value: "{{ git_user_signingkey }}"
+# - name: "Git | Set commit.gpgsign"
+#   community.general.git_config:
+#     name: commit.gpgsign
+#     scope: global
+#     value: true
+#
+# - name: "Git | Set tag.gpgsign"
+#   community.general.git_config:
+#     name: tag.gpgsign
+#     scope: global
+#     value: true
+#
+# - name: "Git | Set user.signingkey"
+#   community.general.git_config:
+#     name: user.signingkey
+#     scope: global
+#     value: "{{ git_user_signingkey }}"
 
 # - name: "Git | Ensure ~/.config/git/allowed_signers exists"
 #   ansible.builtin.file:

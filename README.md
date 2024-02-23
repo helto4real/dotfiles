@@ -50,6 +50,7 @@ To use copilot plugin you need to setup.
 ```
 :Copilot setup
 ```
+Hepp!
 
 ### Noteworthy cool stuff
 
