@@ -119,3 +119,8 @@ map("n", "<leader>tr", ":lua require('neotest').run.run()<CR>", "Run [T]est") --
 map("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Run [T]est [F]ile") -- run test file
 map("n", "<leader>tp", ":lua require('neotest').run.run(vim.fn.getcwd())<CR>", "Run [T]est [F]ile") -- run test file
 map("n", "<leader>td", ":lua require('neotest').run.run({ strategy = 'dap' })<CR>", "Run [T]est [F]ile") -- run test file
+
+--- Dotnet commands
+map("n", "<leader>dc", ":tabnew | terminal dotnet build<CR>", "Build [C]urrent project")
+map("n", "<leader>dr", ":tabnew | terminal dotnet run<CR>", "Run [C]urrent project")
+map("n", "<leader>dt", ":tabnew | terminal dotnet test<CR>", "Run [T]est")

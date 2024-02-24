@@ -44,7 +44,6 @@ local on_attach = function(client, bufnr)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
 
-    nmap("<leader>b", "<cmd>CompilerOpen<cr>", "[B]uild binary")
     -- nmap("<leader>b", "<cmd>CompilerRedo<cr>", "[B]uild binary")
     -- quick fix naviagtion
     --vim.keymap.set("n", "<C-", "<cmd>cnext<CR>zz")
