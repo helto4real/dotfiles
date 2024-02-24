@@ -233,6 +233,7 @@ require('lazy').setup(
             "rcarriga/nvim-notify",
           }
         },
+        { "Issafalcon/lsp-overloads.nvim"},
         require 'helto4real.plugins.debug',
 
         -- Detect tabstop and shiftwidth automatically

@@ -1,6 +1,6 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     -- NOTE: Remember that lua is a real programming language, and as such it is possible
     -- to define small helper and utility functions so you don't have to repeat yourself
     -- many times.
@@ -13,6 +13,12 @@ local on_attach = function(_, bufnr)
         end
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
+
+  --- Guard against servers without the signatureHelper capability
+    if client.server_capabilities.signatureHelpProvider then
+        require('lsp-overloads').setup(client, { })
+    end
+
     nmap('<leader>e', '<cmd>TroubleToggle<CR>', '[e]rrors')
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
