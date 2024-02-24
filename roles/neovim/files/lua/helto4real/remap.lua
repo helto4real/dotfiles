@@ -112,3 +112,10 @@ map('t', '<C-w>', [[<C-\><C-n><C-w>]])
 -- Stay in indent mode
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+
+--- Lua test commands
+map("n", "<leader>ts", ":lua require('neotest').summary.toggle()<CR>", "Toggle [T]est [S]ummary")
+map("n", "<leader>tr", ":lua require('neotest').run.run()<CR>", "Run [T]est") -- run test under cursor
+map("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Run [T]est [F]ile") -- run test file
+map("n", "<leader>tp", ":lua require('neotest').run.run(vim.fn.getcwd())<CR>", "Run [T]est [F]ile") -- run test file
+map("n", "<leader>td", ":lua require('neotest').run.run({ strategy = 'dap' })<CR>", "Run [T]est [F]ile") -- run test file

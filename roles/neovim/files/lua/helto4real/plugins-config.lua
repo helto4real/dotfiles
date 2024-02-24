@@ -219,21 +219,55 @@ require('lazy').setup(
         },
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         {
-          "folke/noice.nvim",
-          event = "VeryLazy",
-          opts = {
-            -- add any options here
-          },
-          dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
-          }
+            "folke/noice.nvim",
+            event = "VeryLazy",
+            opts = {
+                -- add any options here
+            },
+            dependencies = {
+                -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+                "MunifTanjim/nui.nvim",
+                -- OPTIONAL:
+                --   `nvim-notify` is only needed, if you want to use the notification view.
+                --   If not available, we use `mini` as the fallback
+                "rcarriga/nvim-notify",
+            }
         },
-        { "Issafalcon/lsp-overloads.nvim"},
+        { "Issafalcon/lsp-overloads.nvim" },
+        {
+            "nvim-neotest/neotest",
+            event = "VeryLazy",
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "antoinemadec/FixCursorHold.nvim",
+                "nvim-treesitter/nvim-treesitter",
+                "Issafalcon/neotest-dotnet",
+            },
+            -- config = function()
+            --     local neotest = require("neotest")
+            --     neotest.setup({
+            --         log_level = 1,
+            --         adapters = {
+            --             require("neotest-dotnet")({
+            --                 dicovery_root = "solution",
+            --             }),
+            --         },
+            --         icons = {
+            --             expanded = "",
+            --             child_prefix = "",
+            --             child_indent = "",
+            --             final_child_prefix = "",
+            --             non_collapsible = "",
+            --             collapsed = "",
+            --             passed = "",
+            --             running = "",
+            --             failed = "",
+            --             unknown = "",
+            --             skipped = "",
+            --         },
+            --     })
+            -- end,
+        },
         require 'helto4real.plugins.debug',
 
         -- Detect tabstop and shiftwidth automatically
