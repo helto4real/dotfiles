@@ -1,5 +1,9 @@
 local opt = vim.opt -- for easier to read
 
+-- leader  have to be set before plugins and all other configs
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- helps perfomance on windows with my anti-virus software
 vim.g.nofsync = true
 
