@@ -31,7 +31,7 @@ return {
 
             --- Guard against servers without the signatureHelper capability
             if client.server_capabilities.signatureHelpProvider then
-                require('lsp-overloads').setup(client, { })
+                require('lsp-overloads').setup(client, {})
             end
 
             nmap('<leader>e', '<cmd>TroubleToggle<CR>', '[e]rrors')
