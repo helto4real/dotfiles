@@ -1,5 +1,7 @@
-return { }
--- return {
---     dir = "~/git/dotnet-tools",
---     opts = {}
--- }
+return {
+    dir = "~/git/dotnet-tools",
+    dependencieset = {
+        "plenary.nvim",
+    },
+    opts = {}
+}

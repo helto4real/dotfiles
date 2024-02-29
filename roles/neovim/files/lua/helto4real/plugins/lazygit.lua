@@ -5,4 +5,11 @@ return {
         "nvim-lua/plenary.nvim",
     },
 
+    keys = {
+        {
+            "<leader>gg",
+            ":LazyGit<CR>",
+            desc = "Flash"
+        },
+    },
 }

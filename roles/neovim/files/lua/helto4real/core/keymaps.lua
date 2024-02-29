@@ -1,20 +1,22 @@
-local keymap = vim.keymap --short
-
-local map = function(mode, keys, func, desc)
-    keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
-end
-
 -- Ok VIM purists will bash me for this...
 vim.cmd('source ~/.config/nvim/lua/helto4real/core/keymaps.vim')
+print("Loading keymaps.lua")
+local keymap = vim.keymap --short
 
---setup keybindings for terminal
-map("n", "<leader>tt", ":ToggleTerm size=50 direction=vertical<CR>", "Toggle [T]erminal")
+local function map(mode, lhs, rhs, desc, opts)
+    local options = { noremap = true, silent = true, desc = desc }
+    if opts then
+        options = vim.tbl_extend('force', options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
 
 -- Do not copy single character
 keymap.set("n", "x", '"_x')
 keymap.set("n", "<C-a>", "ggVG")
 -- window splitting
-map("n", "<leader>wv", "<C-w>v", "Split [W]indow [V]ertically")
+map('n', '<leader>wv', '<C-w>v', 'Split [W]indow [V]ertically')
 map("n", "<leader>wh", "<C-w>s", "Split [W]indow horizontally")
 map("n", "<leader>ws", "<C-w>s", "Split [W]indow horizontally")
 map("n", "<leader>we", "<C-w>=", "[W]indow [=]equal width")
@@ -86,14 +88,3 @@ map('t', '<C-w>', [[<C-\><C-n><C-w>]])
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- --- Lua test commands
--- map("n", "<leader>ts", ":lua require('neotest').summary.toggle()<CR>", "Toggle [T]est [S]ummary")
--- map("n", "<leader>tr", ":lua require('neotest').run.run()<CR>", "Run [T]est") -- run test under cursor
--- map("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Run [T]est [F]ile") -- run test file
--- map("n", "<leader>tp", ":lua require('neotest').run.run(vim.fn.getcwd())<CR>", "Run [T]est [F]ile") -- run test file
--- map("n", "<leader>td", ":lua require('neotest').run.run({ strategy = 'dap' })<CR>", "Run [T]est [F]ile") -- run test file
-
--- --- Dotnet commands
--- map("n", "<leader>dc", ":tabnew | terminal dotnet build<CR>", "Build [C]urrent project")
--- map("n", "<leader>dr", ":tabnew | terminal dotnet run<CR>", "Run [C]urrent project")
--- map("n", "<leader>dt", ":tabnew | terminal dotnet test<CR>", "Run [T]est")
