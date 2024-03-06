@@ -18,59 +18,86 @@ return {
         { 'folke/neodev.nvim',                         event = "VeryLazy" },
         { "williamboman/mason-lspconfig.nvim",         event = "VeryLazy" },
         { "WhoIsSethDaniel/mason-tool-installer.nvim", event = "VeryLazy" },
+        { "jmederosalvarado/roslyn.nvim",              event = "VeryLazy" },
+        -- { "iabdelkareem/csharp.nvim",                  event = "VeryLazy" },
+        -- { "Tastyep/structlog.nvim",                    event = "VeryLazy" },
     },
     config = function()
-        local on_attach = function(client, bufnr)
-            -- for LSP related items. It sets the mode, buffer and description for us each time.
-            local nmap = function(keys, func, desc)
-                if desc then
-                    desc = 'LSP: ' .. desc
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+            callback = function(event)
+                -- local on_attach = function(client, bufnr)
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                local bufnr = event.buf
+
+                -- for LSP related items. It sets the mode, buffer and description for us each time.
+                local nmap = function(keys, func, desc)
+                    if desc then
+                        desc = 'LSP: ' .. desc
+                    end
+                    vim.keymap.set('n', keys, func, { noremap = true, silent = true, buffer = bufnr, desc = desc })
                 end
-                vim.keymap.set('n', keys, func, { noremap = true, silent = true, buffer = bufnr, desc = desc })
-            end
 
-            --- Guard against servers without the signatureHelper capability
-            if client.server_capabilities.signatureHelpProvider then
-                require('lsp-overloads').setup(client, {})
-            end
+                --- Guard against servers without the signatureHelper capability
+                if client.server_capabilities.signatureHelpProvider then
+                    require('lsp-overloads').setup(client, {})
+                end
 
-            nmap('<leader>e', '<cmd>TroubleToggle<CR>', '[e]rrors')
-            nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-            nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-            nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-            nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-            nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-            nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-            nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-            nmap('<leader>gs', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-            nmap('<leader>I', require('telescope.builtin').lsp_incoming_calls, '[I]ncoming calls')
-            -- See `:help K` for why this keymap
-            nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-            nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
-            -- Lesser used LSP functionality
+                nmap('<leader>e', '<cmd>TroubleToggle<CR>', '[e]rrors')
+                nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+                nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+                nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+                nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+                nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+                nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+                nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+                nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+                nmap('<leader>gs', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+                nmap('<leader>I', require('telescope.builtin').lsp_incoming_calls, '[I]ncoming calls')
+                -- See `:help K` for why this keymap
+                nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+                nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
+                -- Lesser used LSP functionality
 
-            -- Workspace related LSP functionality, not used often
-            -- nmap('<leader>wwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-            -- nmap('<leader>wwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-            -- nmap('<leader>wwl', function()
-            --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            -- end, '[W]orkspace [L]ist Folders')
-            -- Create a command `:Format` local to the LSP buffer
-            vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-                vim.lsp.buf.format()
-            end, { desc = 'Format current buffer with LSP' })
+                -- Workspace related LSP functionality, not used often
+                -- nmap('<leader>wwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+                -- nmap('<leader>wwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+                -- nmap('<leader>wwl', function()
+                --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                -- end, '[W]orkspace [L]ist Folders')
+                -- Create a command `:Format` local to the LSP buffer
+                vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+                    vim.lsp.buf.format()
+                end, { desc = 'Format current buffer with LSP' })
 
-            nmap("<leader>cf", ":Format<CR>", "[C]ode [F]ormat the current buffer with LSP")
-            -- quick fix naviagtion
-            --vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
-            --vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
-            --vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-            --vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-            -- Setup neovim lua configuration
+                nmap("<leader>cf", ":Format<CR>", "[C]ode [F]ormat the current buffer with LSP")
+                -- quick fix naviagtion
+                --vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
+                --vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
+                --vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+                --vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+                -- Setup neovim lua configuration
 
-            -- only setup on attach
-        end
+                -- only setup on attach
+
+                -- The following two autocommands are used to highlight references of the
+                -- word under your cursor when your cursor rests there for a little while.
+                --    See `:help CursorHold` for information about when this is executed
+                --
+                -- When you move your cursor, the highlights will be cleared (the second autocommand).
+                if client and client.server_capabilities.documentHighlightProvider then
+                    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
+
+                    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.clear_references,
+                    })
+                end
+            end,
+        })
 
         -- neodev setup before lspconfig
         require('neodev').setup()
@@ -117,14 +144,14 @@ return {
         lspconfig["html"].setup({
             capabilities = capabilities,
             filetypes = { 'html', 'twig', 'hbs' },
-            on_attach = on_attach,
+            -- on_attach = on_attach,
         })
 
         -- configure lua server
         lspconfig["lua_ls"].setup({
             capabilities = capabilities,
             filetypes = { 'lua' },
-            on_attach = on_attach,
+            -- on_attach = on_attach,
             settings = {
                 Lua = {
                     workspace = { checkThirdParty = false },
@@ -137,27 +164,40 @@ return {
         lspconfig["v_analyzer"].setup({
             capabilities = capabilities,
             filetypes = { 'v' },
-            on_attach = on_attach,
+            -- on_attach = on_attach,
         })
 
         -- configure yaml server
         lspconfig["yamlls"].setup({
             capabilities = capabilities,
             filetypes = { 'yaml', 'yml' },
-            on_attach = on_attach,
+            -- on_attach = on_attach,
         })
         -- configure c# (omnisharp) server
-        lspconfig["omnisharp"].setup({
-            capabilities = capabilities,
-            cmd = { "dotnet", vim.fn.stdpath "data" .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-            enable_import_completion = true,
-            organize_imports_on_format = true,
-            enable_roslyn_analyzers = true,
-            root_dir = function()
-                return vim.loop.cwd() -- current working directory
+        -- lspconfig["omnisharp"].setup({
+        --     capabilities = capabilities,
+        --     cmd = { "dotnet", vim.fn.stdpath "data" .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+        --     enable_roslyn_analyzers = true,
+        --     enable_roslyn_analysers = true,
+        --     enable_import_completion = true,
+        --     organize_imports_on_format = true,
+        --     enable_decompilation_support = true,
+        --     root_dir = function()
+        --         return vim.loop.cwd() -- current working directory
+        --     end,
+        --     filetypes = { 'cs' },
+        --     -- on_attach = on_attach,
+        -- })
+        require("roslyn").setup({
+            -- dotnet_cmd = "dotnet", -- this is the default
+            -- It is a hidden thing, checkout the c# vscode extension for more info
+            -- https://github.com/dotnet/vscode-csharp/blob/main/package.json#L40
+
+            roslyn_version = "4.10.0-2.24124.2", -- this is the default
+            on_attach = function(client, bufnr)
+                print("Roslyn attached")
             end,
-            filetypes = { 'cs' },
-            on_attach = on_attach,
+            capabilities = capabilities, -- required
         })
     end,
 }

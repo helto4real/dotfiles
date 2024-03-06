@@ -15,6 +15,10 @@ end
 -- Do not copy single character
 keymap.set("n", "x", '"_x')
 keymap.set("n", "<C-a>", "ggVG")
+
+-- remove highlight for search
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 -- window splitting
 map('n', '<leader>wv', '<C-w>v', 'Split [W]indow [V]ertically')
 map("n", "<leader>wh", "<C-w>s", "Split [W]indow horizontally")

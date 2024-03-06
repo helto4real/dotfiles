@@ -7,7 +7,27 @@ vim.g.maplocalleader = ' '
 -- helps perfomance on windows with my anti-virus software
 vim.g.nofsync = true
 
-vim.cmd([[au BufNewFile,BufRead *.v set filetype=v]])
+-- Don't show the mode, since it's already in status line
+opt.showmode = false
+
+-- Enable break indent
+opt.breakindent = true
+
+-- Configure how new splits should be opened
+opt.splitright = true
+opt.splitbelow = true
+
+-- Sets how neovim will display certain whitespace in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+opt.list = true
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type!
+opt.inccommand = 'split'
+-- higlight matches while searching
+opt.incsearch = true
+
 -- let's get smart indenting
 opt.smartindent = true
 -- No annoying backups
@@ -24,9 +44,7 @@ opt.shiftwidth = 4
 opt.expandtab = true
 
 -- do not highligt previous searches
-opt.hlsearch = false
--- higlight matches while searching
-opt.incsearch = true
+opt.hlsearch = true
 -- do ignore case search when search
 opt.ignorecase = true
 -- case sensitive if a case character is part of search
@@ -57,3 +75,5 @@ opt.nu = true
 opt.relativenumber = true
 
 opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+
+vim.cmd([[au BufNewFile,BufRead *.v set filetype=v]])
