@@ -19,8 +19,67 @@ return {
         { "williamboman/mason-lspconfig.nvim",         event = "VeryLazy" },
         { "WhoIsSethDaniel/mason-tool-installer.nvim", event = "VeryLazy" },
         { "jmederosalvarado/roslyn.nvim",              event = "VeryLazy" },
+        {
+            "olexsmir/gopher.nvim",
+            ft = "go",
+            config = function(_, opts)
+                require("gopher").setup(opts)
+                -- require("core.utils").load_mappings("gopher")
+            end,
+            build = function()
+                vim.cmd [[silent! GoInstallDeps]]
+            end,
+        },
+        -- {
+        --     "crispgm/nvim-go",
+        --     dependencies = {
+        --         "nvim-lua/plenary.nvim",
+        --         -- "rcarriga/nvim-notify",
+        --     },
+        --     config = function()
+        --         require('go').setup({
+        --             -- notify: use nvim-notify
+        --             notify = true,
+        --             -- auto commands
+        --             auto_format = true,
+        --             auto_lint = true,
+        --             -- linters: revive, errcheck, staticcheck, golangci-lint
+        --             linter = 'revive',
+        --             -- linter_flags: e.g., {revive = {'-config', '/path/to/config.yml'}}
+        --             linter_flags = {},
+        --             -- lint_prompt_style: qf (quickfix), vt (virtual text)
+        --             lint_prompt_style = 'vt',
+        --             -- formatter: goimports, gofmt, gofumpt
+        --             formatter = 'goimports',
+        --             -- maintain cursor position after formatting loaded buffer
+        --             maintain_cursor_pos = true,
+        --             -- test flags: -count=1 will disable cache
+        --             test_flags = { '-v' },
+        --             test_timeout = '30s',
+        --             test_env = {},
+        --             -- show test result with popup window
+        --             test_popup = true,
+        --             test_popup_auto_leave = true,
+        --             test_popup_width = 80,
+        --             test_popup_height = 10,
+        --             -- test open
+        --             test_open_cmd = 'edit',
+        --             -- struct tags
+        --             tags_name = 'json',
+        --             tags_options = { 'json=omitempty' },
+        --             tags_transform = 'snakecase',
+        --             tags_flags = { '-skip-unexported' },
+        --             -- quick type
+        --             quick_type_flags = { '--just-types' },
+        --         })
+        --     end,
+        --     event = { "CmdlineEnter" },
+        --     ft = { "go", 'gomod' },
+        --     -- build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+        -- },
         -- { "iabdelkareem/csharp.nvim",                  event = "VeryLazy" },
         -- { "Tastyep/structlog.nvim",                    event = "VeryLazy" },
+
     },
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -114,6 +173,7 @@ return {
                 'v_analyzer',
                 'lua_ls',
                 'yamlls',
+                'gopls',
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
@@ -173,6 +233,16 @@ return {
             filetypes = { 'yaml', 'yml' },
             -- on_attach = on_attach,
         })
+
+        local util = require "lspconfig/util"
+        lspconfig["gopls"].setup({
+            capabilities = capabilities,
+            filetypes = { "go", "gomod", "gowork", "gotmpl" },
+            root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+            -- filetypes = { 'yaml', 'yml' },
+            -- on_attach = on_attach,
+        })
+
         -- configure c# (omnisharp) server
         -- lspconfig["omnisharp"].setup({
         --     capabilities = capabilities,
