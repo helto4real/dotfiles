@@ -174,6 +174,7 @@ return {
                 'lua_ls',
                 'yamlls',
                 'gopls',
+                -- 'rust_analyzer',
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
@@ -227,6 +228,12 @@ return {
             -- on_attach = on_attach,
         })
 
+        -- configure v-language server
+        -- lspconfig["rust_analyzer"].setup({
+        --     capabilities = capabilities,
+        --     -- filetypes = { 'v' },
+        --     -- on_attach = on_attach,
+        -- })
         -- configure yaml server
         lspconfig["yamlls"].setup({
             capabilities = capabilities,
