@@ -3,7 +3,7 @@ return {
         keys = {
         {
             "<leader>gg",
-            ":FloatTermNew lazygit<CR>",
+            ":FloatermNew lazygit<CR>",
             desc = "Lazygit"
         },
     },
