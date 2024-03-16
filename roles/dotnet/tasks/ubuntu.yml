@@ -23,5 +23,6 @@
       ansible.builtin.apt:
         name:
           - dotnet-sdk-8.0
+          - dotnet-runtime-8.0
         state: present
       become: true
