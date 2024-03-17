@@ -43,6 +43,11 @@ return {
                 ":CopilotChatDocs<CR>",
                 desc = "CopilotChat - Documentation",
             },
+            {
+                "<leader>ccd",
+                ":CopilotChatFixDiagnostic<CR>",
+                desc = "CopilotChat - Fix diagnostic",
+            },
         },
         opts = {
             -- debug = true, -- Enable debugging
