@@ -38,6 +38,11 @@ return {
                 ":CopilotChatCommit<CR>",
                 desc = "CopilotChat - Commit message",
             },
+            {
+                "<leader>ccd",
+                ":CopilotChatDocs<CR>",
+                desc = "CopilotChat - Documentation",
+            },
         },
         opts = {
             -- debug = true, -- Enable debugging
