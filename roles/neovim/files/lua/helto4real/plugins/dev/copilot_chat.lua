@@ -33,6 +33,11 @@ return {
                 end,
                 desc = "CopilotChat - Prompt actions",
             },
+            {
+                "<leader>ccc",
+                ":CopilotChatCommit<CR>",
+                desc = "CopilotChat - Commit message",
+            },
         },
         opts = {
             -- debug = true, -- Enable debugging
