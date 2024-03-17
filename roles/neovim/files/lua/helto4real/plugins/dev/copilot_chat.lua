@@ -23,7 +23,7 @@ return {
                     local actions = require("CopilotChat.actions")
                     require("CopilotChat.integrations.telescope").pick(actions.help_actions())
                 end,
-                desc = "CopilotChat - Help actions",
+                desc = "CopilotChat - [H]elp actions",
             },
             {
                 "<leader>cca",
@@ -31,22 +31,22 @@ return {
                     local actions = require("CopilotChat.actions")
                     require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
                 end,
-                desc = "CopilotChat - Prompt actions",
+                desc = "CopilotChat - Prompt [A]ctions",
             },
             {
                 "<leader>ccc",
                 ":CopilotChatCommit<CR>",
-                desc = "CopilotChat - Commit message",
+                desc = "CopilotChat - [C]ommit Message",
             },
             {
                 "<leader>ccd",
                 ":CopilotChatDocs<CR>",
-                desc = "CopilotChat - Documentation",
+                desc = "CopilotChat - [D]ocumentation",
             },
             {
-                "<leader>ccd",
+                "<leader>ccf",
                 ":CopilotChatFixDiagnostic<CR>",
-                desc = "CopilotChat - Fix diagnostic",
+                desc = "CopilotChat - [F]ix Diagnostic",
             },
         },
         opts = {
