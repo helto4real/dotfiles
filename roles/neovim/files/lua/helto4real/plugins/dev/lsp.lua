@@ -241,6 +241,12 @@ return {
             -- on_attach = on_attach,
         })
 
+        lspconfig["pyright"].setup({
+            capabilities = capabilities,
+            -- filetypes = { 'yaml', 'yml' },
+            -- on_attach = on_attach,
+        })
+        
         local util = require "lspconfig/util"
         lspconfig["gopls"].setup({
             capabilities = capabilities,
