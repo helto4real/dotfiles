@@ -3,7 +3,9 @@ return {
     dependencieset = {
         "plenary.nvim",
     },
-    opts = {},
+    init = function()
+        require("dotnet-tools").setup({})
+    end,
     keys = {
         {
             "<leader>ct",
