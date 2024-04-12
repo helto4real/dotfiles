@@ -174,6 +174,7 @@ return {
                 'lua_ls',
                 'yamlls',
                 'gopls',
+                'jsonls',
                 -- 'rust_analyzer',
             },
             -- auto-install configured servers (with lspconfig)
@@ -241,12 +242,18 @@ return {
             -- on_attach = on_attach,
         })
 
+        lspconfig["jsonls"].setup({
+            capabilities = capabilities,
+            -- filetypes = { 'json' },
+            -- on_attach = on_attach,
+        })
+
         lspconfig["pyright"].setup({
             capabilities = capabilities,
             -- filetypes = { 'yaml', 'yml' },
             -- on_attach = on_attach,
         })
-        
+
         local util = require "lspconfig/util"
         lspconfig["gopls"].setup({
             capabilities = capabilities,
