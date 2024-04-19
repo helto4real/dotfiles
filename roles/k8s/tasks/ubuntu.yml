@@ -11,7 +11,7 @@
 
 - name: K8s | Adding kubernetes apt repo
   ansible.builtin.apt_repository:
-    repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+    repo: "deb https://apt.kubernetes.io/ kubernetes-jammy main"
   become: true
 
 - name: K8s | Installing Kubernetes
