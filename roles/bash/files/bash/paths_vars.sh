@@ -11,5 +11,7 @@ addToPath $HOME/.dotfiles/bin
 
 addToPathFront $HOME/.local/bin
 
+addToPath $HOME/.fzf/bin
+
 # ccache
 #addToPathFront /usr/lib/ccache
