@@ -33,4 +33,4 @@
         - always
 
   roles:
-    - fd
+    - bat
