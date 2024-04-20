@@ -1,0 +1,18 @@
+---
+- name: "fd | Install fd file finder"
+  ansible.builtin.apt:
+    name: fd-find
+    state: present
+  become: true
+
+- name: "fd | Find fdfind path"
+  ansible.builtin.shell:
+    cmd: which fdfind
+  register: fdfind_path
+
+- name: "fd | Create symlink to fd command"
+  ansible.builtin.file:
+    src: "{{ fdfind_path.stdout }}"
+    dest: "{{ ansible_user_dir }}/.local/bin/fd"
+    state: link
+    force: true
