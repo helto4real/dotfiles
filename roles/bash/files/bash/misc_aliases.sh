@@ -5,5 +5,5 @@ alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -
 alias comment-header='toilet -f pagga -S'
 alias i='/mnt/c/Windows/explorer.exe'
 alias ncdu='ncdu --color dark -e -q --exclude-caches --exclude-kernfs -L'
-alias tm = 'tmux'
+alias tm='tmux'
 alias lzg='lazygit'
