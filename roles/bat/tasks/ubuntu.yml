@@ -33,7 +33,7 @@
   ansible.builtin.get_url:
     url: "https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_night.tmTheme"
     dest: "{{ bat_config_dir.stdout }}/themes"
-    mode: "0644"
+    mode: "0755"
 
 - name: "bat | build cache"
   ansible.builtin.shell:

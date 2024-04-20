@@ -11,3 +11,9 @@
     depth: 1
     dest: "{{ ansible_user_dir }}/.fzf"
   notify: "Install FZF"
+
+- name: "FZF | Clone the fzf-git"
+  ansible.builtin.git:
+    repo: https://github.com/junegunn/fzf-git.sh.git
+    depth: 1
+    dest: "{{ ansible_user_dir }}/fzf-git"
