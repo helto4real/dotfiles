@@ -16,3 +16,26 @@
     dest: "{{ ansible_user_dir }}/.local/bin/bat"
     state: link
     force: true
+
+- name: "bat | Find bat config path"
+  ansible.builtin.shell:
+    cmd: bat --config-dir
+  register: bat_config_dir
+  
+- name: "bat | Create the theme directory"
+  ansible.builtin.file:
+    path: "{{ bat_config_dir.stdout }}/themes"
+    state: directory
+    force: true
+    mode: "0755"
+
+- name: "bat | get tokio night theme"
+  ansible.builtin.get_url:
+    url: "https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_night.tmTheme"
+    dest: "{{ bat_config_dir.stdout }}/themes"
+    mode: "0644"
+
+- name: "bat | build cache"
+  ansible.builtin.shell:
+    cmd: bat cache --build
+
