@@ -8,3 +8,5 @@ addToPath '/mnt/c/Users/tomas/AppData/Local/Programs/Microsoft VS Code/bin/'
 addToPath '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/'
 
 addToPath '/mnt/c/Windows/'
+
+addToPath '/mnt/c/Windows/System32/'
