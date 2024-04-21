@@ -9,7 +9,6 @@
       - unzip
       - ansible-lint
       - ripgrep
-      - fzf
       - libfuse2
       - nodejs
 

@@ -1,0 +1,7 @@
+---
+- name: "Remove GITDELTADEB"
+  ansible.builtin.file:
+    state: absent
+    path: "{{ ansible_user_dir }}/git-delta.deb"
+    force: true
+  become: true 

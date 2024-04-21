@@ -1,0 +1,12 @@
+---
+- name: "git-delta | get deb file"
+  ansible.builtin.get_url:
+    url: https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb
+    dest: "{{ ansible_user_dir }}/git-delta.deb"
+    #mode: "0755"
+  notify: "Remove GITDELTADEB"
+
+- name: "git-delta | Install deb"
+  apt:
+    deb: "{{ ansible_user_dir }}/git-delta.deb"
+  become: true
