@@ -82,3 +82,9 @@
       become: true
       notify:
         - Remove extracted lazygit directory
+- name: "LAZYGIT | Copy config.yml to .config"
+  ansible.builtin.copy:
+    src: "config.yml"
+    dest: "{{ ansible_user_dir }}/.config/lazygit/config.yml"
+    mode: "0644"
+    force: true
