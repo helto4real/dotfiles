@@ -1,21 +1,15 @@
 ---
-- name: "bat | Install bat" 
-  ansible.builtin.apt:
-    name: bat
-    state: present
+- name: "bat | get deb file"
+  ansible.builtin.get_url:
+    url: "https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_amd64.deb"
+    dest: "{{ ansible_user_dir }}/bat.deb"
+    #mode: "0755"
+  notify: "Remove BATDEB"
+
+- name: "bat | Install deb"
+  apt:
+    deb: "{{ ansible_user_dir }}/bat.deb"
   become: true
-
-- name: "bat | Find batcat path"
-  ansible.builtin.shell:
-    cmd: which batcat
-  register: batcat_path
-
-- name: "fd | Create symlink to bat command"
-  ansible.builtin.file:
-    src: "{{ batcat_path.stdout }}"
-    dest: "{{ ansible_user_dir }}/.local/bin/bat"
-    state: link
-    force: true
 
 - name: "bat | Find bat config path"
   ansible.builtin.shell:

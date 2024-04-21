@@ -1,0 +1,7 @@
+---
+- name: "Remove BATDEB"
+  ansible.builtin.file:
+    state: absent
+    path: "{{ ansible_user_dir }}/bat.deb"
+    force: true
+  become: true 
