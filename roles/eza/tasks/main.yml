@@ -1,0 +1,24 @@
+---
+- name: Eza | Add Eza GPG key
+  ansible.builtin.apt_key:
+    url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+    state: present
+    keyring: /usr/share/keyrings/eza.gpg
+  become: true
+
+- name: Eza | Add Eza APT repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/eza.gpg] http://deb.gierens.de stable main" 
+    filename: gierens
+  become: true
+
+- name: Eza | Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+
+- name: Eza | Install Eza
+  ansible.builtin.apt:
+    name: eza
+    state: present
+  become: true
