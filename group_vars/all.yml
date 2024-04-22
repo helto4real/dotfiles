@@ -3,10 +3,12 @@ default_roles:
   - 1password
   - bash
   - bat
+  - eza
   - fonts
   - fd
   - fzf
   - git
+  - git-delta
   - gh
   - k8s
   - go
