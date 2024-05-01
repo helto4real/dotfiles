@@ -169,7 +169,7 @@ return {
             -- list of servers for mason to install
             ensure_installed = {
                 -- 'omnisharp',
-                'roslyn',
+                -- 'roslyn',
                 'html',
                 'v_analyzer',
                 'lua_ls',
