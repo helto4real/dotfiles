@@ -98,7 +98,7 @@ return {
                 end
 
                 --- Guard against servers without the signatureHelper capability
-                if client.server_capabilities.signatureHelpProvider then
+                if client ~= nil and client.server_capabilities.signatureHelpProvider then
                     require('lsp-overloads').setup(client, {})
                 end
 
@@ -168,7 +168,8 @@ return {
         mason_lspconfig.setup({
             -- list of servers for mason to install
             ensure_installed = {
-                'omnisharp',
+                -- 'omnisharp',
+                'roslyn',
                 'html',
                 'v_analyzer',
                 'lua_ls',
@@ -284,9 +285,9 @@ return {
             -- https://github.com/dotnet/vscode-csharp/blob/main/package.json#L40
 
             roslyn_version = "4.10.0-2.24124.2", -- this is the default
-            on_attach = function(client, bufnr)
-                print("Roslyn attached")
-            end,
+            -- on_attach = function(client, bufnr)
+            --     print("Roslyn attached")
+            -- end,
             capabilities = capabilities, -- required
         })
     end,
