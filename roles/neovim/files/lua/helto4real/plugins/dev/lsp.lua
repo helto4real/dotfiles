@@ -176,6 +176,7 @@ return {
                 'yamlls',
                 'gopls',
                 'jsonls',
+                'pyright',
                 -- 'rust_analyzer',
             },
             -- auto-install configured servers (with lspconfig)
