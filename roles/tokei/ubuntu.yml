@@ -1,0 +1,4 @@
+---
+
+- name: Tokei | Install tokei using cargo
+  ansible.builtin.shell: cargo install tokei
