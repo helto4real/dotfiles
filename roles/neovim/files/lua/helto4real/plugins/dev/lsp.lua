@@ -102,7 +102,7 @@ return {
                     require('lsp-overloads').setup(client, {})
                 end
 
-                nmap('<leader>e', '<cmd>TroubleToggle<CR>', '[e]rrors')
+                nmap('<leader>e', '<cmd>Trouble diagnostics toggle focus=false filter.buf=0<CR>', '[e]rrors')
                 nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
                 nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
                 nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
