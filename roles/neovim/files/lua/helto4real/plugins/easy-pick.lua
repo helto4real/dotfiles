@@ -38,7 +38,7 @@ return {
             },
         })
         local keymap = vim.keymap
-        keymap.set('n', '<leader>fc', '<cmd>Easypick changed_files<cr>', { desc = '[F]earch [C]hanged git files' })
+        keymap.set('n', '<leader>fc', '<cmd>Easypick changed_files<cr>', { desc = '[F]ind [C]hanged git files' })
     end,
 
 }

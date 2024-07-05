@@ -54,11 +54,12 @@ return {
             })
         end, { desc = '[/] Fuzzily search in current buffer' })
 
-        keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-        keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-        keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-        keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-        keymap.set('n', '<leader>fr', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-        keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+        keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, { desc = 'Find [G]it files' })
+        keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
+        keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
+        keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
+        keymap.set('n', '<leader>fr', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
+        keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
+        keymap.set('n', '<leader>fk', require('telescope.builtin').keymap, { desc = '[F]ind [K]eymap' })
     end,
 }
