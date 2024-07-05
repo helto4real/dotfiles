@@ -60,6 +60,6 @@ return {
         keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
         keymap.set('n', '<leader>fr', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
         keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
-        keymap.set('n', '<leader>fk', require('telescope.builtin').keymap, { desc = '[F]ind [K]eymap' })
+        keymap.set('n', '<leader>fk', require('telescope.builtin').keymaps, { desc = '[F]ind [K]eymap' })
     end,
 }
