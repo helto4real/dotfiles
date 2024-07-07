@@ -319,7 +319,7 @@ return {
             -- However, in `hacks.lua` I will also just don't start off any watchers, which seems to make the server
             -- a lot faster to initialize.
             filewatching = true,
-            capabilities = capabilities,
+            -- capabilities = capabilities,
         })
     end,
 }
