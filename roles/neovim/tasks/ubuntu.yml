@@ -24,13 +24,27 @@
 
 - name: "Neovim | Download Neovim appimsge"
   block:
-    - name: Download appimage
-      ansible.builtin.get_url:
-        url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-        dest: /tmp/nvim.appimage
-        mode: "0755"
+    - name: Neovim | Fetch latest release from GitHub API
+      uri:
+        url: "https://api.github.com/repos/neovim/neovim/releases/latest"
+        return_content: yes
+      register: github_response
 
-    - name: System | Copy neovim into path
+    - name: Neovim | Parse latest release version
+      set_fact:
+        latest_version: "{{ github_response.json.tag_name }}"
+
+    - name: Neovim | Get the download URL for the AppImage
+      set_fact:
+        appimage_url: "{{ github_response.json.assets | selectattr('name', 'search', 'nvim.appimage') | map(attribute='browser_download_url') | first }}"
+
+    - name: Neovim | Download the latest Neovim AppImage
+      get_url:
+        url: "{{ appimage_url }}"
+        dest: "/tmp/nvim.appimage"
+        mode: '0755'
+
+    - name: Neovim | Copy neovim into path
       ansible.builtin.copy:
         remote_src: true
         src: /tmp/nvim.appimage
@@ -39,7 +53,7 @@
         force: true
       become: true
 
-    - name: System | Remove tmp file
+    - name: Neovim | Remove tmp file
       ansible.builtin.file:
         path: /tmp/nvim.appimage
         state: absent
