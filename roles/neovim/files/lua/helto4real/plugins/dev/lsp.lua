@@ -285,7 +285,7 @@ return {
             -- It is a hidden thing, checkout the c# vscode extension for more info
             -- https://github.com/dotnet/vscode-csharp/blob/main/package.json#L40
 
-            roslyn_version = "4.11.0-3.24313.9", -- this is the default
+            roslyn_version = "4.11.0-3.24320.2", -- this is the default
             on_attach = function(client, bufnr)
                 print("Roslyn attached")
             end,
