@@ -75,6 +75,10 @@ opt.nu = true
 -- and use relateive line numbers
 opt.relativenumber = true
 
+-- enable spell checking
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
+
 opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 
 vim.cmd([[au BufNewFile,BufRead *.v set filetype=v]])
