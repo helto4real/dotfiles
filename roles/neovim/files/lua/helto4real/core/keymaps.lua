@@ -71,7 +71,7 @@ map("n", "Q", "<nop>")
 map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 map("n", "<leader>le", "<cmd>setlocal spell spelllang=en_us<CR>", "Enable spell checking en_us")
-map("n", "<leader>ls", "<cmd>setlocal spell spelllang=sv_se<CR>", "Enable spell checking sv_se")
+map("n", "<leader>ls", "<cmd>setlocal spell spelllang=sv<CR>", "Enable spell checking sv")
 map("n", "<leader>ld", "<cmd>setlocal nospell<CR>", "Disable spell checking")
 
 -- smart replacing the current word
