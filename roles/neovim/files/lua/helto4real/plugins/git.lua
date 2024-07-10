@@ -29,14 +29,14 @@ return {
             {
                 "<leader>gg",
                 function()
-                    require("neogit").open()
+                    require("neogit").open({ kind = "split" })
                 end,
                 desc = "(G)it Neo(g)it",
             },
             {
                 "<leader>gc",
                 function()
-                    require("neogit").open({ "commit --all" })
+                    require("neogit").open({ "commit", kind = "split"})
                 end,
                 desc = "(G)it (C)ommit",
             },
