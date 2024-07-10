@@ -25,9 +25,25 @@ return {
     },
     {
         "NeogitOrg/neogit",
+        keys = {
+            {
+                "<leader>gg",
+                function()
+                    require("neogit").open()
+                end,
+                desc = "(G)it Neo(g)it",
+            },
+            {
+                "<leader>gc",
+                function()
+                    require("neogit").open({ "commit --all" })
+                end,
+                desc = "(G)it (C)ommit",
+            },
+        },
         event = "VeryLazy",
         dependencies = {
-            "nvim-lua/plenary.nvim", -- required
+            "nvim-lua/plenary.nvim",  -- required
             "sindrets/diffview.nvim", -- optional - Diff integration
 
             -- Only one of these is needed, not both.

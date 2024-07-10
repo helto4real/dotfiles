@@ -2,7 +2,7 @@ return {
     'voldikss/vim-floaterm',
         keys = {
         {
-            "<leader>gg",
+            "<leader>gl",
             ":FloatermNew lazygit<CR>",
             desc = "Lazygit"
         },
