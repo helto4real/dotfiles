@@ -30,8 +30,53 @@ return {
             },
             {
                 "<leader>ghpc",
-                "<cmd>Octo pr checkout<CR>",
-                desc = "(G)it(H)ub (P)R (C)heckout",
+                "<cmd>Octo pr changes<CR>",
+                desc = "(G)it(H)ub (P)R (C)hanges",
+            },
+            {
+                "<leader>ghpb",
+                "<cmd>Octo pr browser<CR>",
+                desc = "(G)it(H)ub (P)R (B)rowser",
+            },
+            {
+                "<leader>ghpru",
+                "<cmd>Octo pr list<CR>",
+                desc = "(G)it(H)ub (P)R s(U)ubmit",
+            },
+            {
+                "<leader>ghprs",
+                "<cmd>Octo pr review start<CR>",
+                desc = "(G)it(H)ub (P)R (R)eview (S)tart",
+            },
+            {
+                "<leader>ghpre",
+                "<cmd>Octo pr review checks<CR>",
+                desc = "(G)it(H)ub (P)R (R)eview (C)hecks",
+            },
+            {
+                "<leader>ghprr",
+                "<cmd>Octo pr review resume<CR>",
+                desc = "(G)it(H)ub (P)R (R)eview (R)esume",
+            },
+            {
+                "<leader>ghprm",
+                "<cmd>Octo pr review comment<CR>",
+                desc = "(G)it(H)ub (P)R (R)eview co(M)ent",
+            },
+            {
+                "<leader>ghprx",
+                "<cmd>Octo pr review close<CR>",
+                desc = "(G)it(H)ub (P)R (R)eview close(X)",
+            },
+            {
+                "<leader>ghprd",
+                "<cmd>Octo pr review discard<CR>",
+                desc = "(G)it(H)ub (P)R (R)eview (D)iscard",
+            },
+            {
+                "<leader>ghpro",
+                "<cmd>Octo pr review commit<CR>",
+                desc = "(G)it(H)ub (P)R (R)eview c(O)mmit",
             },
         },
     },
