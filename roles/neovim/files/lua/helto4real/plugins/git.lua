@@ -61,6 +61,13 @@ return {
                 end,
                 desc = "(G)it (W)orktree",
             },
+            {
+                "<leader>gb",
+                function()
+                    require("neogit").open({ "branch" })
+                end,
+                desc = "(G)it (B)ranch",
+            },
         },
         event = "VeryLazy",
         dependencies = {
