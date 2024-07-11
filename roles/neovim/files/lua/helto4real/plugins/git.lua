@@ -36,9 +36,23 @@ return {
             {
                 "<leader>gc",
                 function()
-                    require("neogit").open({ "commit", kind = "split"})
+                    require("neogit").open({ "commit", "-a", kind = "split"})
                 end,
                 desc = "(G)it (C)ommit",
+            },
+            {
+                "<leader>gd",
+                function()
+                    require("neogit").open({ "diff", kind = "split"})
+                end,
+                desc = "(G)it (D)iff",
+            },
+            {
+                "<leader>gs",
+                function()
+                    require("neogit").open({ "status", kind = "split"})
+                end,
+                desc = "(G)it (S)tatus",
             },
         },
         event = "VeryLazy",
