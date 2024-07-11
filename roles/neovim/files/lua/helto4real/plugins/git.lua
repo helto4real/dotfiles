@@ -48,11 +48,18 @@ return {
                 desc = "(G)it (D)iff",
             },
             {
-                "<leader>gs",
+                "<leader>gp",
                 function()
-                    require("neogit").open({ "status", kind = "split"})
+                    require("neogit").open({ "push" })
                 end,
-                desc = "(G)it (S)tatus",
+                desc = "(G)it (P)ush",
+            },
+            {
+                "<leader>gw",
+                function()
+                    require("neogit").open({ "worktree" })
+                end,
+                desc = "(G)it (W)orktree",
             },
         },
         event = "VeryLazy",
