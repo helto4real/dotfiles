@@ -68,6 +68,13 @@ return {
                 end,
                 desc = "(G)it (B)ranch",
             },
+            {
+                "<leader>gr",
+                function()
+                    require("neogit").open({ "rebase" })
+                end,
+                desc = "(G)it (R)ebase",
+            },
         },
         event = "VeryLazy",
         dependencies = {
