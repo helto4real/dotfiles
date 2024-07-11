@@ -21,7 +21,19 @@ return {
         },
         config = function()
             require "octo".setup()
-        end
+        end,
+        keys = {
+            {
+                "<leader>ghpl",
+                "<cmd>Octo pr list<CR>",
+                desc = "(G)it(H)ub (P)R (L)ist",
+            },
+            {
+                "<leader>ghpc",
+                "<cmd>Octo pr checkout<CR>",
+                desc = "(G)it(H)ub (P)R (C)heckout",
+            },
+        },
     },
     {
         "NeogitOrg/neogit",
