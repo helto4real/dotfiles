@@ -35,6 +35,11 @@ return {
                 desc = "(G)it(H)ub (R)epo (L)ist",
             },
             {
+                "<leader>ghrv",
+                "<cmd>Octo repo view<CR>",
+                desc = "(G)it(H)ub (R)epo (V)iew",
+            },
+            {
                 "<leader>ghil",
                 "<cmd>Octo issue list<CR>",
                 desc = "(G)it(H)ub (I)ssue (L)ist",
