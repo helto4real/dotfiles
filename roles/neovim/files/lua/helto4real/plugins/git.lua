@@ -25,6 +25,21 @@ return {
         end,
         keys = {
             {
+                "<leader>ghrb",
+                "<cmd>Octo repo browser<CR>",
+                desc = "(G)it(H)ub (R)epo (B)rowser",
+            },
+            {
+                "<leader>ghrl",
+                "<cmd>Octo repo list<CR>",
+                desc = "(G)it(H)ub (R)epo (L)ist",
+            },
+            {
+                "<leader>ghil",
+                "<cmd>Octo issue list<CR>",
+                desc = "(G)it(H)ub (I)ssue (L)ist",
+            },
+            {
                 "<leader>ghpl",
                 "<cmd>Octo pr list<CR>",
                 desc = "(G)it(H)ub (P)R (L)ist",
