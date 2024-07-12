@@ -39,8 +39,13 @@ return {
                 desc = "(G)it(H)ub (P)R (B)rowser",
             },
             {
+                "<leader>ghph",
+                "<cmd>Octo pr checkout<CR>",
+                desc = "(G)it(H)ub (P)R c(H)echout",
+            },
+            {
                 "<leader>ghpru",
-                "<cmd>Octo pr list<CR>",
+                "<cmd>Octo pr s(U)mit<CR>",
                 desc = "(G)it(H)ub (P)R s(U)ubmit",
             },
             {
