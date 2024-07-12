@@ -50,6 +50,11 @@ return {
                 desc = "(G)it(H)ub (P)R (L)ist",
             },
             {
+                "<leader>ghpn",
+                "<cmd>Octo pr create<CR>",
+                desc = "(G)it(H)ub (P)R create(N)",
+            },
+            {
                 "<leader>ghpc",
                 "<cmd>Octo pr changes<CR>",
                 desc = "(G)it(H)ub (P)R (C)hanges",
