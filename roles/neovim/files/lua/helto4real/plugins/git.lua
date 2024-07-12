@@ -7,10 +7,10 @@ return {
     --     'tpope/vim-rhubarb',
     --     event = "VeryLazy",
     -- },
-    {
-        "lewis6991/gitsigns.nvim",
-        event = "VeryLazy",
-    },
+    -- {
+    --     "lewis6991/gitsigns.nvim",
+    --     event = "VeryLazy",
+    -- },
     {
         'pwntester/octo.nvim',
         event = "VeryLazy",
