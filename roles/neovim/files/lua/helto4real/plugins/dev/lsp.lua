@@ -294,7 +294,6 @@ return {
         --     capabilities = capabilities, -- required
         -- })
         require("roslyn").setup({
-            filetypes = { "cs", "sln" },
             config = {
                 -- Here you can pass in any options that that you would like to pass to `vim.lsp.start`
                 -- The only options that I explicitly override are, which means won't have any effect of setting here are:
