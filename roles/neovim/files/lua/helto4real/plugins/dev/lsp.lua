@@ -300,14 +300,11 @@ return {
                 --     - `name`
                 --     - `cmd`
                 --     - `root_dir`
-                --     - `on_init`
-                --     - `handlers`
             },
-            exe = vim.fs.joinpath(
-                vim.fn.stdpath("data") --[[@as string]],
-                "roslyn",
-                "Microsoft.CodeAnalysis.LanguageServer.dll"
-            ),
+            exe = {
+                "dotnet",
+                vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+            },
             -- NOTE: Set `filewatching` to false if you experience performance problems.
             -- Defaults to true, since turning it off is a hack.
             -- If you notice that the server is _super_ slow, it is probably because of file watching
@@ -319,7 +316,6 @@ return {
             -- However, in `hacks.lua` I will also just don't start off any watchers, which seems to make the server
             -- a lot faster to initialize.
             filewatching = true,
-            -- capabilities = capabilities,
         })
     end,
 }
