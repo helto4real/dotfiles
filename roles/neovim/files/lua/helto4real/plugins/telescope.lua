@@ -36,6 +36,11 @@ return {
                     },
                 },
             },
+            find_files = {
+
+                hidden = true
+
+            }
         })
         -- Enable telescope fzf native, if installed
         pcall(require('telescope').load_extension, 'fzf')
@@ -55,7 +60,7 @@ return {
         end, { desc = '[/] Fuzzily search in current buffer' })
 
         keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, { desc = 'Find [G]it files' })
-        keymap.set('n', '<leader>ff', require('telescope.builtin').find_files(hidden=true), { desc = '[F]ind [F]iles' })
+        keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
         keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
         keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
         keymap.set('n', '<leader>fr', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
