@@ -2,7 +2,7 @@
   block:
     - name: Dotnet | Install dotnet repository
       ansible.builtin.apt_repository:
-      repo: 'ppa:dotnet/backports'
+        repo: 'ppa:dotnet/backports'
       become: true
     - name: Dotnet | Install Dotnet SDK and Runtime
       ansible.builtin.apt:
