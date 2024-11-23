@@ -1,6 +1,6 @@
 - name: "DotNet | Install Dotnet using Microsoft feeds"
   block:
-    - name: Dotnet | Install repository
+    - name: Dotnet | Install dotnet repository
       ansible.builtin.apt_repository:
       repo: 'ppa:dotnet/backports'
       become: true
