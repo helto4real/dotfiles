@@ -4,10 +4,14 @@
       ansible.builtin.apt_repository:
         repo: 'ppa:dotnet/backports'
       become: true
-    - name: Dotnet | Install Dotnet SDK and Runtime
+    - name: Dotnet | Install Dotnet 8 Runtime
       ansible.builtin.apt:
         name:
           - dotnet-runtime-8.0
+        state: present
+    - name: Dotnet | Install Dotnet 9 SDK and Runtime
+      ansible.builtin.apt:
+        name:
           - dotnet-sdk-9.0
           - dotnet-runtime-9.0
         state: present
