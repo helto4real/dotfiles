@@ -1,1 +1,1 @@
-export DOTNET_ROOT=/usr/share/dotnet/
+export DOTNET_ROOT=/usr/lib/dotnet/
