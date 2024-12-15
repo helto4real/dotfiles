@@ -95,5 +95,5 @@ map('t', 'jk', [[<C-\><C-n>]])
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
-map("n", "M-j", "<cmd>cnext<CR>zz", "Next quickfix")
-map("n", "M-k", "<cmd>cprev<CR>zz", "Previous quickfix")
+map("n", "A-j", "<cmd>cnext<CR>zz", "Next quickfix")
+map("n", "A-k", "<cmd>cprev<CR>zz", "Previous quickfix")
