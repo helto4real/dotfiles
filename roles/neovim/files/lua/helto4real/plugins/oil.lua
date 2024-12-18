@@ -17,5 +17,6 @@ return
             "<cmd>Oil<cr>",
             { desc = "Open Oil file manager" }
         )
+        require("oil").setup()
     end,
 }
