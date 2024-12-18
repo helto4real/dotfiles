@@ -6,8 +6,9 @@ return {
     dependencies = {
         { 'williamboman/mason.nvim',                   event = "VeryLazy" },
         { 'williamboman/mason-lspconfig.nvim',         event = "VeryLazy" },
+        { 'saghen/blink.cmp',                          event = "VeryLazy" },
         -- Adds LSP completion capabilities
-        { 'hrsh7th/cmp-nvim-lsp',                      event = "VeryLazy" },
+        -- { 'hrsh7th/cmp-nvim-lsp',                      event = "VeryLazy" },
         -- Show overloads for LSP
         { "Issafalcon/lsp-overloads.nvim",             event = "VeryLazy" },
         -- Adds LSP completion capabilities
@@ -191,10 +192,8 @@ return {
         })
         local lspconfig = require("lspconfig")
 
-        -- import cmp-nvim-lsp plugin
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
         -- used to enable autocompletion (assign to every lsp server config)
-        local capabilities = cmp_nvim_lsp.default_capabilities()
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         -- Change the Diagnostic symbols in the sign column (gutter)
         local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
@@ -294,6 +293,7 @@ return {
         --     capabilities = capabilities, -- required
         -- })
         require("roslyn").setup({
+            capabilities = capabilities,
             config = {
                 -- Here you can pass in any options that that you would like to pass to `vim.lsp.start`
                 -- The only options that I explicitly override are, which means won't have any effect of setting here are:
